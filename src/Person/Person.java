@@ -1,13 +1,11 @@
 package Person;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Person{
 
     private int _id;
-    private String _firstname;
+    private String _Vorname;
     private String _lastname;
     private LocalDate _birthdate;
     private char _geschlecht;
@@ -26,11 +24,11 @@ public abstract class Person{
 
     public String getFirstname() {
 
-        return this._firstname;
+        return this._Vorname;
     }
 
     public void setFirstname(String firstname) {
-        this._firstname = firstname;
+        this._Vorname = firstname;
     }
 
     public String getLastname() {
@@ -73,7 +71,7 @@ public abstract class Person{
 
     @Override
     public String toString() {
-        return this._id + " " + this._firstname + " " + this._lastname + "\n" + this._birthdate + " " + this._geschlecht;
+        return this._id + " " + this._Vorname + " " + this._lastname + "\n" + this._birthdate + " " + this._geschlecht;
     }
 
 
