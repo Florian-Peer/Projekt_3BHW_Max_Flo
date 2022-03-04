@@ -66,8 +66,6 @@ public abstract class Person{
         this.setId(id);
 
         this.setFirstname(firstname);
-        //this._firstname = firstname;
-
         this.setLastname(lastname);
         this.setBirthdate(birthdate);
         this.setGeschlecht(geschlecht);
