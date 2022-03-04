@@ -7,7 +7,6 @@ import java.util.List;
 public abstract class Person{
 
     private int _id;
-    private String _firstname;
     private String _lastname;
     private LocalDate _birthdate;
     private char _geschlecht;
