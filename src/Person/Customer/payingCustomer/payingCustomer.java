@@ -5,7 +5,11 @@ import Person.Customer.Customer;
 import java.time.LocalDate;
 
 public class payingCustomer extends Customer {
-    String was;
+
+    private String _username;
+    private String _password;
+    //private
+
 
 
     public payingCustomer(int id, String firstname, String lastname, LocalDate birthdate, char gender) {
