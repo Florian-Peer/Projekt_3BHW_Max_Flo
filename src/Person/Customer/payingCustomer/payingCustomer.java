@@ -40,13 +40,13 @@ public class payingCustomer extends Customer {
 
     @Override
     public String toString() {
-        String s = super.toString() + "\n" + this.getUsername() + " " + this.getPassword();
+        StringBuilder s = new StringBuilder(super.toString() + "\n" + this.getUsername() + " " + this.getPassword());
 
         for (Ticket t : this._ticket) {
-            s += t + "\n";
+            s.append(t).append("\n");
         }
 
-        return s;
+        return s.toString();
     }
 
     public boolean addTicket(Ticket ticket) {
