@@ -45,7 +45,7 @@ public class payingCustomer extends Customer {
         for (Ticket t : this._ticket) {
             s.append(t).append("\n");
         }
-        
+
         return s.toString();
     }
 

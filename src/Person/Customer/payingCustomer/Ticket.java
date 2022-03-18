@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 
 public class Ticket {
 
+    /* TODO: 18.03.2022
+        Klasse Ticketwriter schreiben, wo man nur Kaufdatum
+     */
+
     private int _ticketId;
     private int _typeOfTicket;
     private LocalDateTime _ticketBuyTime;
