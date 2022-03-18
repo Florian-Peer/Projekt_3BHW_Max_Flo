@@ -16,5 +16,18 @@ public class Customer extends Person {
         this._dateOfVisit = dateOfVisit;
     }
 
-    public Customer(int id, String firstname, String lastname, LocalDate birthdate, char gender){}
+    public Customer(){this(0," ", " ", null, ' ',null);}
+    public Customer(int id, String firstname, String lastname, LocalDate birthdate, char gender, LocalDate dateOfVisit){
+        this.setId(id);
+        this.setFirstname(firstname);
+        this.setLastname(lastname);
+        this.setBirthdate(birthdate);
+        this.setGender(gender);
+        this.setDateOfVisit(dateOfVisit);
+    }
+
+    @Override
+    public String toString(){
+        return super.toString() + "\n" +_dateOfVisit;
+    }
 }

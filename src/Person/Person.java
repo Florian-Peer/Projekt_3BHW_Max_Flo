@@ -8,7 +8,7 @@ public abstract class Person{
     private String _Vorname;
     private String _lastname;
     private LocalDate _birthdate;
-    private char _geschlecht;
+    private char _gender;
 
 
 
@@ -47,12 +47,12 @@ public abstract class Person{
         this._birthdate = birthdate;
     }
 
-    public char getGeschlecht() {
-        return this._geschlecht;
+    public char getGender() {
+        return this._gender;
     }
 
-    public void setGeschlecht(char geschlecht) {
-        this._geschlecht = geschlecht;
+    public void setGender(char geschlecht) {
+        this._gender = geschlecht;
     }
 
 
@@ -66,12 +66,12 @@ public abstract class Person{
         this.setFirstname(firstname);
         this.setLastname(lastname);
         this.setBirthdate(birthdate);
-        this.setGeschlecht(geschlecht);
+        this.setGender(geschlecht);
     }
 
     @Override
     public String toString() {
-        return this._id + " " + this._Vorname + " " + this._lastname + "\n" + this._birthdate + " " + this._geschlecht;
+        return this._id + " " + this._Vorname + " " + this._lastname + "\n" + this._birthdate + " " + this._gender;
     }
 
 

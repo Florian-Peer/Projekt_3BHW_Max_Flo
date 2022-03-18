@@ -28,19 +28,19 @@ public class payingCustomer extends Customer {
     }
 
     public payingCustomer() {
-        this(0, " ", " ", null, ' ', " ", " ");
+        this(0, " ", " ", null,null, ' ', " ", " ");
     }
 
-    public payingCustomer(int id, String firstname, String lastname, LocalDate birthdate, char gender,
+    public payingCustomer(int id, String firstname, String lastname, LocalDate birthdate, LocalDate dateOfVisit, char gender,
                           String username, String password) {
-        super(id, firstname, lastname, birthdate, gender);
+        super(id, firstname, lastname, birthdate, gender, dateOfVisit);
         this.setUsername(username);
         this.setPassword(password);
     }
 
     @Override
     public String toString() {
-        String s = super.toString() + this.getUsername() + " " + this.getPassword();
+        String s = super.toString() + "\n" + this.getUsername() + " " + this.getPassword();
 
         for (Ticket t : this._ticket) {
             s += t + "\n";
