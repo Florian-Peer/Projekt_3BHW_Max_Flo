@@ -41,13 +41,20 @@ public class Ticket {
         this._ticketExpireDate = _ticketExpireDate;
     }
 
-    public Ticket(){this(0,0,null,null);}
+    public Ticket() {
+        this(0, 0, null, null);
+    }
 
-    public Ticket(int _ticketId, int _typeOfTicket, LocalDateTime _ticketBuyTime, LocalDateTime _ticketExpireDate){
+    public Ticket(int _ticketId, int _typeOfTicket, LocalDateTime _ticketBuyTime, LocalDateTime _ticketExpireDate) {
         this.setTicketId(_ticketId);
         this.setTypeOfTicket(_typeOfTicket);
         this.setTicketBuyTime(_ticketBuyTime);
         this.setTicketExpireDate(_ticketExpireDate);
+    }
+
+    @Override
+    public String toString() {
+        return this.getTicketId() + " " + this._typeOfTicket + " " + this._ticketBuyTime + " " + this._ticketExpireDate;
     }
 
 
