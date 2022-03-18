@@ -5,7 +5,9 @@ import java.time.LocalDateTime;
 public class Ticket {
 
     /* TODO: 18.03.2022
-        Klasse Ticketwriter schreiben, wo man nur Kaufdatum
+        Klasse Ticketwriter schreiben, wo man nur Kaufdatum und Art vom Ticket eingeben muss
+        Halbtagesticket -> Expiredate = buytime + 12 h
+        damit man expiredate nicht manuell ausrechnen muss
      */
 
     private int _ticketId;
