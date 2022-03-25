@@ -1,10 +1,6 @@
 import java.io.IOException;
 import java.nio.file.*;
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class HomeMain {
 
@@ -54,7 +50,6 @@ public class HomeMain {
                                 switch (mmenu){
                                     case 's':
                                         System.out.println("Schneekanonen werden geladen....\n");
-                                        //
                                         System.out.println();
                                 }
 
