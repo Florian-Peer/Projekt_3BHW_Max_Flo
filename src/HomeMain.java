@@ -9,6 +9,8 @@ public class HomeMain {
 
     static Scanner reader = new Scanner(System.in);
     static char choice;
+    static char choice2;
+    static char mmenu;
     static String username;
     static String password;
 
@@ -27,6 +29,40 @@ public class HomeMain {
                 System.out.println("Anmelden");
                 anmelden();
                 //Hier wird probiert
+                if(anmelden()){
+                    System.out.println("Supper das hat geklappt");
+                    System.out.println("Wie wollen Sie nun fortfahren?");
+                    System.out.println("M----Mitarbeiterbereich");
+                    //Mitarbeiter ID angeben
+                    System.out.println("B----Besucherbereich");
+                    choice2 = reader.next().toLowerCase().charAt(0);
+                    switch(choice2){
+                        case 'm':
+                            if(mitarbeiterId()){
+                                System.out.println("\n\n\n\n");
+                                System.out.println("_-_-_-_-_-_-Mitarbeiterbereich-_-_-_-_-_-_-_\n\n");
+                                System.out.println("Sie können nun auf folgende Funktionen zugreifen");
+                                System.out.println("[S] Schneekanonen steuern\n\n");
+                                mmenu = reader.next().toLowerCase().charAt(0);
+                                switch (mmenu){
+                                    case 's':
+                                        System.out.println("Schneekanonen werden geladen....\n");
+                                        //
+                                        System.out.println();
+                                }
+
+                            }
+                            break;
+                        case 'b':
+                            System.out.println("BEss");
+
+                    }
+
+                }
+                else{
+                    System.out.println("Fehler bei der Anmeldung");
+                }
+
                 break;
             case 'r':
                 System.out.println("Registrieren");
@@ -45,6 +81,10 @@ public class HomeMain {
         System.out.println("[Benutzername:]");
 
         System.out.println("[Passwort]");
+        return true;
+    }
+    public static boolean mitarbeiterId(){
+        System.out.println("Sie sind ein Mitarbeiter");
         return true;
     }
 /*
