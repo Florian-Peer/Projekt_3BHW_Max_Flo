@@ -26,6 +26,7 @@ public class HomeMain {
             case 'a':
                 System.out.println("Anmelden");
                 anmelden();
+                //Hier wird probiert
                 break;
             case 'r':
                 System.out.println("Registrieren");
