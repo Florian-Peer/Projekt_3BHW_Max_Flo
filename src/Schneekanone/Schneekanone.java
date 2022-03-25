@@ -39,7 +39,7 @@ public class Schneekanone {
     public Schneekanone(){
         this(0, "", "",false);
     }
-    public Article(int kid, String Kanonenname, String brand, boolean betrieb){
+    public Schneekanone(int kid, String Kanonenname, String brand, boolean betrieb){
         this.setKid(kid);
         this.setKanoneName(Kanonenname);
         this.setBrand(brand);
@@ -56,4 +56,4 @@ public class Schneekanone {
         return  this.getKid() + ";" + this.getKanoneName() + ";" + this.getBrand() + ";" + this.getBetrieb() + ";";
     }
 }
-}
+
