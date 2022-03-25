@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.nio.file.*;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,10 +14,11 @@ public class HomeMain {
     static char mmenu;
     static String username;
     static String password;
+    static Path userData = Paths.get("Files\\UserData.csv");
 
     public static void main(String[] args) {
 
-        Path userData = Paths.get("Files\\UserData.csv");
+
 
 
         System.out.println("Willkommen");
@@ -27,7 +29,12 @@ public class HomeMain {
         switch (choice){
             case 'a':
                 System.out.println("Anmelden");
-                anmelden();
+                if(anmelden()){
+                    System.out.println("Anmelden erfolgreich!");
+                }
+                else {
+                    System.out.println("Anmelden fehlgeschlagen!");
+                }
                 //Hier wird probiert
                 if(anmelden()){
                     System.out.println("Supper das hat geklappt");
@@ -66,6 +73,7 @@ public class HomeMain {
                 break;
             case 'r':
                 System.out.println("Registrieren");
+                registrieren(userData);
                 break;
             case 'g':
                 System.out.println("Gast");
@@ -76,40 +84,90 @@ public class HomeMain {
 //hallo
 
     }
+
+    // TODO: 25.03.2022 anmelden lösen 
     public static boolean anmelden(){
         System.out.println("Anmeldungsbereich");
         System.out.println("[Benutzername:]");
-
+        username = reader.next();
         System.out.println("[Passwort]");
-        return true;
+        password=reader.next();
+
+        HashMap<String,String> tempMap = readCsvIntoHashmap(userData);
+
+        for (String i : tempMap.keySet()) {
+            System.out.println(i);
+        }
+
+        if(tempMap.get(username) == password){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public static boolean registrieren(Path p){
+        System.out.println("Registrierbereich");
+        if(writeToFile(p,inputHashmap(readCsvIntoHashmap(p)))){
+            System.out.println("registriert");
+            return true;
+        }
+        return false;
     }
     public static boolean mitarbeiterId(){
         System.out.println("Sie sind ein Mitarbeiter");
         return true;
     }
-/*
-    public static HashMap<String, String> readCsv(Path p){
-        HashMap<String,String> tempmap;
-        Article tempAr = new Article();
-        List<Article> temp = new ArrayList<Article>();
+
+    public static HashMap<String, String> readCsvIntoHashmap(Path p){
+        List<String> tempStr = new ArrayList<String>();
+        HashMap<String,String> tempmap = new HashMap<String,String>();
 
         try{
-            tempmap = Files.readAllLines(p);
+            tempStr = Files.readAllLines(p);
         } catch (IOException e) {
             System.out.println("Fehler beim lesen der Datei");
             return null;
         }
 
-        for(int i=0; i< tempmap.size();i++){
-            String[] zuSpalten = tempmap.get(i).split(";");
-            tempAr.setArticleId(Integer.parseInt(zuSpalten[0]));
-            tempAr.setArticleName(zuSpalten[1]);
-            tempAr.set_manufacturer(zuSpalten[2]);
-            tempAr.set_price(Double.parseDouble(zuSpalten[3]));
-            tempAr.set_description(zuSpalten[4]);
-            temp.add(tempAr);
+        for(int i=0; i< tempStr.size();i++){
+            String[] zuSpalten = tempStr.get(i).split(";");
+            tempmap.put(zuSpalten[0],zuSpalten[1]);
         }
-        return temp;
+        return tempmap;
 
-    }*/
+    }
+
+    public static boolean writeToFile(Path p, String inputData){
+        try {
+            Files.writeString(p, inputData, StandardOpenOption.APPEND);
+            return true;
+        }catch(IOException e) {
+            System.out.println("Fehler beim schreiben!\n");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static String inputHashmap(HashMap<String,String> userdata){
+
+        System.out.println("neuen Benutzer erstellen\n");
+
+        System.out.println("Was ist der Benutzername?");
+        username = reader.next();
+        System.out.println("Was ist das Passwort?");
+        password = reader.next();
+
+        if(userdata.containsValue(username)){
+            System.out.println("Benutzer existiert schon!");
+        }
+        else {
+            System.out.println("Daten werden weitergegeben ...");
+            return username + ";" + password +"\n";
+
+        }
+
+        return null;
+    }
 }
