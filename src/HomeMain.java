@@ -4,7 +4,7 @@ import java.util.*;
 
 public class HomeMain {
 
-    static Scanner leser = new Scanner(System.in);
+    static Scanner reader = new Scanner(System.in);
     static char choice;
     static char choice2;
     static char mmenu;
@@ -14,14 +14,11 @@ public class HomeMain {
 
     public static void main(String[] args) {
 
-
-
-
         System.out.println("Willkommen");
         System.out.println("Dies ist nur ein Versuch");
 
         System.out.println("Wollen Sie sich anmelden [a] /registrieren [r] oder als gast [g] fortfahren?");
-        choice = leser.next().toLowerCase().charAt(0);
+        choice = reader.next().toLowerCase().charAt(0);
         switch (choice){
             case 'a':
                 System.out.println("Anmelden");
@@ -32,7 +29,7 @@ public class HomeMain {
                     System.out.println("M----Mitarbeiterbereich");
                     //Mitarbeiter ID angeben
                     System.out.println("B----Besucherbereich");
-                    choice2 = leser.next().toLowerCase().charAt(0);
+                    choice2 = reader.next().toLowerCase().charAt(0);
                     switch(choice2){
                         case 'm':
                             if(mitarbeiterId()){
@@ -40,7 +37,7 @@ public class HomeMain {
                                 System.out.println("_-_-_-_-_-_-Mitarbeiterbereich-_-_-_-_-_-_-_\n\n");
                                 System.out.println("Sie können nun auf folgende Funktionen zugreifen");
                                 System.out.println("[S] Schneekanonen steuern\n\n");
-                                mmenu = leser.next().toLowerCase().charAt(0);
+                                mmenu = reader.next().toLowerCase().charAt(0);
                                 switch (mmenu){
                                     case 's':
                                         System.out.println("Schneekanonen werden geladen....\n");
@@ -79,9 +76,9 @@ public class HomeMain {
     public static boolean anmelden(){
         System.out.println("Anmeldungsbereich");
         System.out.println("[Benutzername:]");
-        username = leser.next();
+        username = reader.next();
         System.out.println("[Passwort]");
-        password= leser.next();
+        password= reader.next();
 
         HashMap<String,String> tempMap = readCsvIntoHashmap(userData);
 
@@ -145,9 +142,9 @@ public class HomeMain {
         System.out.println("neuen Benutzer erstellen\n");
 
         System.out.println("Was ist der Benutzername?");
-        username = leser.next();
+        username = reader.next();
         System.out.println("Was ist das Passwort?");
-        password = leser.next();
+        password = reader.next();
 
         if(userdata.containsValue(username)){
             System.out.println("Benutzer existiert schon!");
