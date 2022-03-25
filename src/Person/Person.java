@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public abstract class Person{
 
     private int _id;
-    private String _Vorname;
+    private String _firstname;
     private String _lastname;
     private LocalDate _birthdate;
     private char _gender;
@@ -24,11 +24,11 @@ public abstract class Person{
 
     public String getFirstname() {
 
-        return this._Vorname;
+        return this._firstname;
     }
 
     public void setFirstname(String firstname) {
-        this._Vorname = firstname;
+        this._firstname = firstname;
     }
 
     public String getLastname() {
@@ -71,7 +71,7 @@ public abstract class Person{
 
     @Override
     public String toString() {
-        return this._id + " " + this._Vorname + " " + this._lastname + "\n" + this._birthdate + " " + this._gender;
+        return this._id + " " + this._firstname + " " + this._lastname + "\n" + this._birthdate + " " + this._gender;
     }
 
 
