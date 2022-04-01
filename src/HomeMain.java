@@ -11,7 +11,7 @@ public class HomeMain {
     static String username;
     static String password;
     public static String mitarbeiterPW = "Schnee";
-    static Path userData = Paths.get("Files\\UserData.csv");
+    static Path userDataPath = Paths.get("Files\\UserData.csv");
 
     public static void main(String[] args) {
 
@@ -59,7 +59,7 @@ public class HomeMain {
                 break;
             case 'r':
                 System.out.println("Registrieren");
-                registrieren(userData);
+                registrieren(userDataPath);
                 break;
             case 'g':
                 System.out.println("Gast");
@@ -71,7 +71,7 @@ public class HomeMain {
 
     }
 
-    // TODO: 25.03.2022 anmelden lösen
+
 
     public static boolean anmelden() {
         System.out.println("Anmeldungsbereich");
@@ -81,7 +81,7 @@ public class HomeMain {
         password = reader.next();
 
         //     KEY      VALUE
-        HashMap<String, String> tempMap = readCsvIntoHashmap(userData);
+        HashMap<String, String> tempMap = readCsvIntoHashmap(userDataPath);
 
         for (String i : tempMap.keySet()) {
             System.out.println(i);
@@ -111,18 +111,18 @@ public class HomeMain {
     }
 
     public static HashMap<String, String> readCsvIntoHashmap(Path p) {
-        List<String> tempStr = new ArrayList<String>();
+        List<String> tempStrList = new ArrayList<String>();
         HashMap<String, String> tempmap = new HashMap<String, String>();
 
         try {
-            tempStr = Files.readAllLines(p);
+            tempStrList = Files.readAllLines(p);
         } catch (IOException e) {
             System.out.println("Fehler beim lesen der Datei");
             return null;
         }
 
-        for (int i = 0; i < tempStr.size(); i++) {
-            String[] zuSpalten = tempStr.get(i).split(";");
+        for (int i = 0; i < tempStrList.size(); i++) {
+            String[] zuSpalten = tempStrList.get(i).split(";");
             tempmap.put(zuSpalten[0], zuSpalten[1]);
         }
         return tempmap;

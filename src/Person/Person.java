@@ -2,6 +2,7 @@ package Person;
 
 import java.time.LocalDate;
 
+// TODO: 01.04.2022 APRIL APRIL mia miassn no die Person einbauen, nit nur username und password
 public abstract class Person{
 
     private int _id;
@@ -9,8 +10,6 @@ public abstract class Person{
     private String _lastname;
     private LocalDate _birthdate;
     private char _gender;
-
-
 
     public int getId() {
         return this._id;
