@@ -14,6 +14,8 @@ public class FileForSKan {
         List <Schneekanone> schneekanones = new ArrayList<>();
         Path pathCSV = Paths.get("D:\\3BHWII\\SWP\\AA_Project_Flo_Max_REP\\Projekt_3BHW_Max_Flo\\Files\\SKData.csv");
 
+        
+
 
     }
 
