@@ -49,7 +49,7 @@ public class Schneekanone {
 
     @Override
     public String toString(){
-        return "ID: " + this.getKid() + " SKNAME: " + this.getKanoneName() + " BRAND: " + this.getBrand() + "IN BETRIEB" + this.getBetrieb();
+        return "ID: " + this.getKid() + " SKNAME: " + this.getKanoneName() + " BRAND: " + this.getBrand() + " BETRIEB: " + this.getBetrieb();
     }
 
     public String toCSV(){
