@@ -10,6 +10,7 @@ public class HomeMain {
     static char mmenu;
     static String username;
     static String password;
+    public static String mitarbeiterPW = "Schnee";
     static Path userData = Paths.get("Files\\UserData.csv");
 
     public static void main(String[] args) {
@@ -79,13 +80,16 @@ public class HomeMain {
         System.out.println("[Passwort]");
         password = reader.next();
 
+        //     KEY      VALUE
         HashMap<String, String> tempMap = readCsvIntoHashmap(userData);
 
         for (String i : tempMap.keySet()) {
             System.out.println(i);
         }
+        System.out.println("tempMap.get(username): " + tempMap.get(username));
+        System.out.println(password);
 
-        if (tempMap.get(username) == password) {
+        if (tempMap.get(username).equals(password)) {
             return true;
         } else {
             return false;
@@ -94,7 +98,7 @@ public class HomeMain {
 
     public static boolean registrieren(Path p) {
         System.out.println("Registrierbereich");
-        if (writeToFile(p, inputHashmap(readCsvIntoHashmap(p)))) {
+        if (writeToFile(p, userdataInput(readCsvIntoHashmap(p)))) {
             System.out.println("registriert");
             return true;
         }
@@ -136,7 +140,7 @@ public class HomeMain {
         }
     }
 
-    public static String inputHashmap(HashMap<String, String> userdata) {
+    public static String userdataInput(HashMap<String, String> userdata) {
         char choice;
         boolean retry = true;
 
@@ -145,20 +149,39 @@ public class HomeMain {
 
             System.out.println("Was ist der Benutzername?");
             username = reader.next();
-            System.out.println("Was ist das Passwort?");
+            System.out.println("Was ist das Passwort? (wenn neuer Mitarbeiter, hier Mitarbeiterpasswort eingeben:)");
             password = reader.next();
 
-            if (userdata.containsKey(username)) {
-                System.out.println("Benutzer existiert schon!");
-                System.out.println("erneut versuchen? [j/n]");
-                choice = reader.next().toLowerCase().charAt(0);
-                if (choice == 'n') {
-                    retry = false;
-                }
+            if(password!=mitarbeiterPW) {
+                if (userdata.containsKey(username)) {
+                    System.out.println("Benutzer existiert schon!");
+                    System.out.println("erneut versuchen? [j/n]");
+                    choice = reader.next().toLowerCase().charAt(0);
+                    if (choice == 'n') {
+                        retry = false;
+                    }
 
-            } else {
-                System.out.println("Daten werden weitergegeben ...");
-                return username + ";" + password + "\n";
+                } else {
+                    System.out.println("Daten werden weitergegeben ...");
+                    return username + ";" + password + ";" + "0" + "\n" ;
+                }
+            }
+            if (password == mitarbeiterPW) {
+                System.out.println("hallo neuer Mitarbeiter!");
+                if (userdata.containsKey(username)) {
+                    System.out.println("Benutzer existiert schon!");
+                    System.out.println("erneut versuchen? [j/n]");
+                    choice = reader.next().toLowerCase().charAt(0);
+                    if (choice == 'n') {
+                        retry = false;
+                    }
+
+                } else {
+                    System.out.println("dein persönliches Mitarbeiterpasswort erstellen: ");
+                    password=reader.next();
+                    System.out.println("Daten werden weitergegeben ...");
+                    return username + ";" + password + ";" + "1" + "\n";
+                }
             }
         } while (retry);
         return null;
