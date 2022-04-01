@@ -29,7 +29,7 @@ public class FileForSKan {
 
 
     }
-    private static void writeSKsToFile(List<Schneekanone> schneekanones){
+    public static void writeSKsToFile(List<Schneekanone> schneekanones){
         try{
             Files.writeString(pathCSV,createStringListfromSkList(schneekanones));
         }
@@ -37,14 +37,14 @@ public class FileForSKan {
             System.out.println("ERROR: SCHREIBEN");
         }
     }
-    private static String createStringListfromSkList (List<Schneekanone>schneekanones){
+    public static String createStringListfromSkList (List<Schneekanone>schneekanones){
         String e ="";
         for(Schneekanone s : schneekanones){
             e+=createStringFromSK(s) +"\n";
         }
         return e;
     }
-    private static String createStringFromSK(Schneekanone schneekanone){
+    public static String createStringFromSK(Schneekanone schneekanone){
         String c = schneekanone.getKid()+";";
         c+=schneekanone.getKanoneName()+";";
         c+=schneekanone.getBrand()+";";
@@ -69,7 +69,7 @@ public class FileForSKan {
 
         return new Schneekanone(id, name, brand,status);
     }
-    private static List<Schneekanone> readSKSFromFile(){
+    public static List<Schneekanone> readSKSFromFile(){
         List <Schneekanone> sk = new ArrayList<>();
         if(Files.exists(pathCSV)){
             try{
@@ -85,7 +85,7 @@ public class FileForSKan {
         return null;
 
     }
-    private static Schneekanone convertCSVStringtoSK(String csvString){
+    public static Schneekanone convertCSVStringtoSK(String csvString){
         String[] data = new String[4];
         data = csvString.split(";");
         Schneekanone s = new Schneekanone();
@@ -95,7 +95,7 @@ public class FileForSKan {
         s.setBetrieb(Boolean.parseBoolean(data[3]));
         return s;
     }
-    private static List <Schneekanone> convertCSVStringListtoSKList(List<String> csvStringList){
+    public static List <Schneekanone> convertCSVStringListtoSKList(List<String> csvStringList){
         List <Schneekanone> schneekanones = new ArrayList<>();
         for(String s : csvStringList){
             schneekanones.add(convertCSVStringtoSK(s));

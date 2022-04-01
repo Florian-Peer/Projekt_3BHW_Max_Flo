@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
+import StatusThings.*;
+import Schneekanone.*;
 
 public class HomeMain {
 
@@ -42,7 +44,12 @@ public class HomeMain {
                                 switch (mmenu) {
                                     case 's':
                                         System.out.println("Schneekanonen werden geladen....\n");
-                                        System.out.println();
+                                        List <Schneekanone> schneekanones= new ArrayList<>();
+                                        schneekanones = FileForSKan.readSKSFromFile();
+                                        schneekanones.forEach(a -> System.out.println(a));
+                                        schneekanones.add(FileForSKan.inputKanoneData());
+                                        FileForSKan.writeSKsToFile(schneekanones);
+                                        schneekanones.forEach(a -> System.out.println(a));
                                 }
 
                             }
@@ -67,11 +74,17 @@ public class HomeMain {
         }
 
 
+
+
+
+
+
 //hallo
 
     }
 
     // TODO: 25.03.2022 anmelden lösen
+
 
     public static boolean anmelden() {
         System.out.println("Anmeldungsbereich");
