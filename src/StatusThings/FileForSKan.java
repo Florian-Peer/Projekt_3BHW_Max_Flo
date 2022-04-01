@@ -55,17 +55,17 @@ public class FileForSKan {
     public static Schneekanone inputKanoneData() {
         System.out.println("ID:");
         int id = reader.nextInt();
+        reader = new Scanner(System.in);
 
         System.out.println("Name: ");
         String name = reader.nextLine();
-
+        reader = new Scanner(System.in);
         System.out.println("Brand: ");
-        //String b2 = reader.nextLine();
         String brand = reader.nextLine();
-
+        reader = new Scanner(System.in);
         System.out.println("Status: ");
         boolean status = reader.nextBoolean();
-
+        reader = new Scanner(System.in);
 
         return new Schneekanone(id, name, brand,status);
     }
