@@ -14,7 +14,6 @@ public class HomeMain {
     static String password;
     public static String mitarbeiterPW = "Schnee";
     static Path userDataPath = Paths.get("Files\\UserData.csv");
-    static Path SKDataPath = Paths.get("Files\\SKData.csv");
     // TODO: 01.04.2022 Path Schneekanone erstellen
     // TODO: 01.04.2022 NONONO DATEI BEHEBEN
 
@@ -48,7 +47,7 @@ public class HomeMain {
                                     case 's':
                                         System.out.println("Schneekanonen werden geladen....\n");
                                         List <Schneekanone> schneekanones= new ArrayList<>();
-                                        schneekanones = FileForSKan.readSKSFromFile(SKDataPath);
+                                        schneekanones = FileForSKan.readSKSFromFile();
                                         schneekanones.forEach(a -> System.out.println(a));
                                         schneekanones.add(FileForSKan.inputKanoneData());
                                         FileForSKan.writeSKsToFile(schneekanones);
