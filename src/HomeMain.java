@@ -167,7 +167,7 @@ public class HomeMain {
             System.out.println("Was ist das Passwort? (wenn neuer Mitarbeiter, hier Mitarbeiterpasswort eingeben:)");
             password = reader.next();
 
-            if(password!=mitarbeiterPW) {
+            if(!password.equals(mitarbeiterPW)) {
                 if (userdata.containsKey(username)) {
                     System.out.println("Benutzer existiert schon!");
                     System.out.println("erneut versuchen? [j/n]");
@@ -181,7 +181,7 @@ public class HomeMain {
                     return username + ";" + password + ";" + "0" + "\n" ;
                 }
             }
-            if (password == mitarbeiterPW) {
+            if (password.equals(mitarbeiterPW)) {
                 System.out.println("hallo neuer Mitarbeiter!");
                 if (userdata.containsKey(username)) {
                     System.out.println("Benutzer existiert schon!");
