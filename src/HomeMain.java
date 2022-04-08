@@ -14,7 +14,10 @@ public class HomeMain {
     static String password =" ";
     static boolean isMitarbeiter = false;
     public static String mitarbeiterPW = "Schnee";
-    static Path userDataPath = Paths.get("Files\\UserData.csv");
+    static Path userDataPath = Paths.get("D:\\3BHWII\\SWP\\AA_Project_Flo_Max_REP\\Projekt_3BHW_Max_Flo\\Files\\UserData.csv");
+    static List<Schneekanone> schneekanones = new ArrayList<>();
+
+    // TODO: 08.04.2022 MAXI PATH D:\3BHWII\SWP\AA_Project_Flo_Max_REP\Projekt_3BHW_Max_Flo\Files\SKData.csv
     // TODO: 01.04.2022 Path Schneekanone erstellen
     // TODO: 01.04.2022 NONONO DATEI BEHEBEN
 
@@ -39,25 +42,37 @@ public class HomeMain {
                     switch (choice2) {
                         case 'm':
                             System.out.println(isMitarbeiter);
-                            if (mitarbeiterId()) {
-                                System.out.println("\n\n\n\n");
-                                System.out.println("_-_-_-_-_-_-Mitarbeiterbereich-_-_-_-_-_-_-_\n\n");
-                                System.out.println("Sie können nun auf folgende Funktionen zugreifen");
-                                System.out.println("[S] Schneekanonen steuern\n\n");
-                                mmenu = reader.next().toLowerCase().charAt(0);
-                                switch (mmenu) {
-                                    case 's':
-                                        System.out.println("Schneekanonen werden geladen....\n");
-                                        List <Schneekanone> schneekanones= new ArrayList<>();
-                                        schneekanones = FileForSKan.readSKSFromFile();
-                                        schneekanones.forEach(a -> System.out.println(a));
-                                        schneekanones.add(FileForSKan.inputKanoneData());
-                                        FileForSKan.writeSKsToFile(schneekanones);
-                                        schneekanones.forEach(a -> System.out.println(a));
-                                }
 
-                            }
-                            break;
+                                if (mitarbeiterId()) {
+                                    System.out.println("\n\n\n\n");
+                                    System.out.println("_-_-_-_-_-_-Mitarbeiterbereich-_-_-_-_-_-_-_\n\n");
+                                    System.out.println("Sie können nun auf folgende Funktionen zugreifen");
+                                    System.out.println("[S] Schneekanonen steuern");
+                                    System.out.println("[H] Neue Schneekanone hinzufügen");
+                                    System.out.println("[r] Zurück zum Menü");
+                                    mmenu = reader.next().toLowerCase().charAt(0);
+                                    switch (mmenu) {
+                                        case 's':
+                                            System.out.println("Schneekanonen werden geladen....\n");
+
+                                            schneekanones = FileForSKan.readSKSFromFile();
+                                            schneekanones.forEach(a -> System.out.println(a));
+
+                                            break;
+                                        case 'h':
+
+                                            System.out.println("HIER DIE NEUEN DATEN HINZUFÜGEN");
+                                            schneekanones = FileForSKan.readSKSFromFile();
+                                            schneekanones.add(inputKanoneData());
+                                            FileForSKan.writeSKsToFile(schneekanones);
+                                        break;
+
+
+                                    }
+
+                                }
+                                break;
+
                         case 'b':
                             System.out.println("BEss");
 
@@ -232,5 +247,24 @@ public class HomeMain {
         } while (retry);
         return null;
 
+
+    }
+
+    public static Schneekanone inputKanoneData() {
+        System.out.println("ID:");
+        int id = reader.nextInt();
+        reader = new Scanner(System.in);
+
+        System.out.println("Name: ");
+        String name = reader.nextLine();
+        reader = new Scanner(System.in);
+        System.out.println("Brand: ");
+        String brand = reader.nextLine();
+        reader = new Scanner(System.in);
+        System.out.println("Status: ");
+        boolean status = reader.nextBoolean();
+        reader = new Scanner(System.in);
+
+        return new Schneekanone(id, name, brand,status);
     }
 }
