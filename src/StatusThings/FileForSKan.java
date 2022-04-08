@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileForSKan {
-    static Path pathCSV = Paths.get("D:\\3BHWII\\SWP\\AA_Project_Flo_Max_REP\\Projekt_3BHW_Max_Flo\\Files\\SKData.csv");
+    static Path SKDataPath = Paths.get("Files\\SKData.csv");
     static Scanner reader  = new Scanner(System.in);
 
     public static void main(String[] args) {
         List <Schneekanone> schneekanones= new ArrayList<>();
-        //schneekanones = readSKSFromFile();
+        schneekanones = readSKSFromFile(SKDataPath);
         schneekanones.forEach(a -> System.out.println(a));
         schneekanones.add(inputKanoneData());
         writeSKsToFile(schneekanones);
@@ -31,7 +31,7 @@ public class FileForSKan {
     }
     public static void writeSKsToFile(List<Schneekanone> schneekanones){
         try{
-            Files.writeString(pathCSV,createStringListfromSkList(schneekanones));
+            Files.writeString(SKDataPath,createStringListfromSkList(schneekanones));
         }
         catch (IOException e){
             System.out.println("ERROR: SCHREIBEN");
