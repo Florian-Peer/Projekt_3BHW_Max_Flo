@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileForSKan {
-    static Path SKDataPath = Paths.get("Files\\SKData.csv");
+    static Path pathCSV = Paths.get("D:\\3BHWII\\SWP\\AA_Project_Flo_Max_REP\\Projekt_3BHW_Max_Flo\\Files\\SKData.csv");
     static Scanner reader  = new Scanner(System.in);
 
     public static void main(String[] args) {
         List <Schneekanone> schneekanones= new ArrayList<>();
-        schneekanones = readSKSFromFile(SKDataPath);
+        schneekanones = readSKSFromFile();
         schneekanones.forEach(a -> System.out.println(a));
         schneekanones.add(inputKanoneData());
         writeSKsToFile(schneekanones);
@@ -31,7 +31,7 @@ public class FileForSKan {
     }
     public static void writeSKsToFile(List<Schneekanone> schneekanones){
         try{
-            Files.writeString(SKDataPath,createStringListfromSkList(schneekanones));
+            Files.writeString(pathCSV,createStringListfromSkList(schneekanones));
         }
         catch (IOException e){
             System.out.println("ERROR: SCHREIBEN");
@@ -69,11 +69,11 @@ public class FileForSKan {
 
         return new Schneekanone(id, name, brand,status);
     }
-    public static List<Schneekanone> readSKSFromFile(Path p){
+    public static List<Schneekanone> readSKSFromFile(){
         List <Schneekanone> sk = new ArrayList<>();
-        if(Files.exists(p)){
+        if(Files.exists(pathCSV)){
             try{
-                return convertCSVStringListtoSKList(Files.readAllLines(p));
+                return convertCSVStringListtoSKList(Files.readAllLines(pathCSV));
             }
             catch (IOException e){
                 System.out.println("Es trat ein Problem beim lesen auf");
