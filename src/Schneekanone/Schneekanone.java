@@ -1,7 +1,9 @@
 package Schneekanone;
 
+
 public class Schneekanone {
     private int _kId;
+
     private String _kanoneName;
     private String _brand;
     private boolean _betrieb;

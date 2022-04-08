@@ -14,7 +14,8 @@ public class HomeMain {
     static String password =" ";
     static boolean isMitarbeiter = false;
     public static String mitarbeiterPW = "Schnee";
-    static Path userDataPath = Paths.get("Files\\UserData.csv");
+    static Path userDataPath = Paths.get("D:\\3BHWII\\SWP\\AA_Project_Flo_Max_REP\\Projekt_3BHW_Max_Flo\\Files\\UserData.csv");
+    static List <Schneekanone> schneekanones= new ArrayList<>();
     // TODO: 01.04.2022 Path Schneekanone erstellen
     // TODO: 01.04.2022 NONONO DATEI BEHEBEN
 
@@ -48,12 +49,17 @@ public class HomeMain {
                                 switch (mmenu) {
                                     case 's':
                                         System.out.println("Schneekanonen werden geladen....\n");
-                                        List <Schneekanone> schneekanones= new ArrayList<>();
+
                                         schneekanones = FileForSKan.readSKSFromFile();
                                         schneekanones.forEach(a -> System.out.println(a));
+                                        break;
+                                    case 'h':
+                                        schneekanones = FileForSKan.readSKSFromFile();
                                         schneekanones.add(FileForSKan.inputKanoneData());
                                         FileForSKan.writeSKsToFile(schneekanones);
-                                        schneekanones.forEach(a -> System.out.println(a));
+                                        break;
+
+
                                 }
 
                             }
