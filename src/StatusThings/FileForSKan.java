@@ -16,7 +16,7 @@ public class FileForSKan {
 
     public static void main(String[] args) {
         List <Schneekanone> schneekanones= new ArrayList<>();
-        schneekanones = readSKSFromFile();
+        //schneekanones = readSKSFromFile();
         schneekanones.forEach(a -> System.out.println(a));
         schneekanones.add(inputKanoneData());
         writeSKsToFile(schneekanones);
@@ -69,11 +69,11 @@ public class FileForSKan {
 
         return new Schneekanone(id, name, brand,status);
     }
-    public static List<Schneekanone> readSKSFromFile(){
+    public static List<Schneekanone> readSKSFromFile(Path p){
         List <Schneekanone> sk = new ArrayList<>();
-        if(Files.exists(pathCSV)){
+        if(Files.exists(p)){
             try{
-                return convertCSVStringListtoSKList(Files.readAllLines(pathCSV));
+                return convertCSVStringListtoSKList(Files.readAllLines(p));
             }
             catch (IOException e){
                 System.out.println("Es trat ein Problem beim lesen auf");
