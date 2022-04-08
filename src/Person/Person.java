@@ -3,6 +3,8 @@ package Person;
 import java.time.LocalDate;
 
 // TODO: 01.04.2022 APRIL APRIL mia miassn no die Person einbauen, nit nur username und password
+// TODO: 08.04.2022 also: mir kennen bei UserData.csv no a Zahl einbauen und des isch die PersonenID
+//                        die personen werden in ana eigenen Datei abgespeichert
 public abstract class Person{
 
     private int _id;
