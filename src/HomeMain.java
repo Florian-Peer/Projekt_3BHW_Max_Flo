@@ -10,8 +10,9 @@ public class HomeMain {
     static char choice;
     static char choice2;
     static char mmenu;
-    static String username;
-    static String password;
+    static String username =" ";
+    static String password =" ";
+    static boolean isMitarbeiter = false;
     public static String mitarbeiterPW = "Schnee";
     static Path userDataPath = Paths.get("Files\\UserData.csv");
     // TODO: 01.04.2022 Path Schneekanone erstellen
@@ -37,6 +38,7 @@ public class HomeMain {
                     choice2 = reader.next().toLowerCase().charAt(0);
                     switch (choice2) {
                         case 'm':
+                            System.out.println(isMitarbeiter);
                             if (mitarbeiterId()) {
                                 System.out.println("\n\n\n\n");
                                 System.out.println("_-_-_-_-_-_-Mitarbeiterbereich-_-_-_-_-_-_-_\n\n");
@@ -121,8 +123,13 @@ public class HomeMain {
     }
 
     public static boolean mitarbeiterId() {
-        System.out.println("Sie sind ein Mitarbeiter");
-        return true;
+        if(checkIfMitarbeiter(userDataPath)) {
+            System.out.println("Sie sind ein Mitarbeiter");
+            return true;
+        }
+        System.out.println("Sie sind kein Mitarbeiter!");
+        System.out.println("Schlingel!");
+        return false;
     }
 
     public static HashMap<String, String> readCsvIntoHashmap(Path p) {
@@ -139,8 +146,32 @@ public class HomeMain {
         for (int i = 0; i < tempStrList.size(); i++) {
             String[] zuSpalten = tempStrList.get(i).split(";");
             tempmap.put(zuSpalten[0], zuSpalten[1]);
+
         }
         return tempmap;
+
+    }
+
+    public static boolean checkIfMitarbeiter(Path p){
+        List<String> tempStrList = new ArrayList<String>();
+
+        try {
+            tempStrList = Files.readAllLines(p);
+        } catch (IOException e) {
+            System.out.println("Fehler beim lesen der Datei");
+            return false;
+        }
+
+        for (int i = 0; i < tempStrList.size(); i++) {
+            String[] zuSpalten = tempStrList.get(i).split(";");
+            if((zuSpalten[2].equals("0") && (zuSpalten[0].equals(username)))){
+                return false;
+            }
+            if((zuSpalten[2].equals("1")) && (zuSpalten[0].equals(username))){
+                return true;
+            }
+        }
+        return false;
 
     }
 
