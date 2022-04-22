@@ -23,7 +23,12 @@ public class FileForSKan {
         writeSKsToFile(schneekanones);
         schneekanones.forEach(a -> System.out.println(a));
 
-
+        int eingegebeneID = 3;
+        for(Schneekanone sc : schneekanones){
+            if(sc.getKid()==eingegebeneID){
+                sc.setBetrieb(!sc.getBetrieb());
+            }
+        }
 
 
 

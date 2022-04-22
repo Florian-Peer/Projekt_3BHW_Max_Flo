@@ -16,8 +16,10 @@ public class HomeMain {
     public static String mitarbeiterPW = "Schnee";
     static Path userDataPath = Paths.get("D:\\3BHWII\\SWP\\AA_Project_Flo_Max_REP\\Projekt_3BHW_Max_Flo\\Files\\UserData.csv");
     static List <Schneekanone> schneekanones= new ArrayList<>();
+    static int id;
     // TODO: 01.04.2022 Path Schneekanone erstellen
     // TODO: 01.04.2022 NONONO DATEI BEHEBEN
+    // TODO: 22.04.2022 HASHMAP Verwendung
 
     public static void main(String[] args) {
 
@@ -44,14 +46,25 @@ public class HomeMain {
                                 System.out.println("\n\n\n\n");
                                 System.out.println("_-_-_-_-_-_-Mitarbeiterbereich-_-_-_-_-_-_-_\n\n");
                                 System.out.println("Sie können nun auf folgende Funktionen zugreifen");
+                                System.out.println("[A] alle registrierte User betrachten");
                                 System.out.println("[S] Schneekanonen steuern\n\n");
+                                System.out.println("[H] Schneekanone hinzufügen");
                                 mmenu = reader.next().toLowerCase().charAt(0);
                                 switch (mmenu) {
+                                    case 'a':
+                                        System.out.println("Diese Personen haben bis jetzt das Skigebiet besucht");
+
                                     case 's':
                                         System.out.println("Schneekanonen werden geladen....\n");
 
                                         schneekanones = FileForSKan.readSKSFromFile();
                                         schneekanones.forEach(a -> System.out.println(a));
+                                        System.out.print("\n\n");
+                                        System.out.println("Statusänderung ber der ID:");
+                                        id = reader.nextInt();
+                                        ChangeStatusSK(id);
+
+
                                         break;
                                     case 'h':
                                         schneekanones = FileForSKan.readSKSFromFile();
@@ -63,6 +76,7 @@ public class HomeMain {
                                 }
 
                             }
+
                             break;
                         case 'b':
                             System.out.println("BEss");
@@ -237,6 +251,14 @@ public class HomeMain {
             }
         } while (retry);
         return null;
+
+    }
+    public static void ChangeStatusSK(int eingebID){
+        for(Schneekanone sc : schneekanones){
+            if(sc.getKid()==eingebID){
+                sc.setBetrieb(!sc.getBetrieb());
+            }
+        }
 
     }
 }
