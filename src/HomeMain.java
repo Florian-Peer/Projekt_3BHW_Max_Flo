@@ -1,6 +1,9 @@
 import java.io.IOException;
 import java.nio.file.*;
+import java.time.LocalDate;
 import java.util.*;
+
+import Person.Person;
 import StatusThings.*;
 import Schneekanone.*;
 
@@ -12,9 +15,10 @@ public class HomeMain {
     static char mmenu;
     static String username =" ";
     static String password =" ";
+    static boolean registrationMitarbeiter = false;
     static boolean isMitarbeiter = false;
     public static String mitarbeiterPW = "Schnee";
-    static Path userDataPath = Paths.get("D:\\3BHWII\\SWP\\AA_Project_Flo_Max_REP\\Projekt_3BHW_Max_Flo\\Files\\UserData.csv");
+    static Path userDataPath = Paths.get("Files\\UserData.csv");
     static List <Schneekanone> schneekanones= new ArrayList<>();
     // TODO: 01.04.2022 Path Schneekanone erstellen
     // TODO: 01.04.2022 NONONO DATEI BEHEBEN
@@ -23,6 +27,8 @@ public class HomeMain {
 
         System.out.println("Willkommen");
         System.out.println("Dies ist nur ein Versuch");
+
+
 
         System.out.println("Wollen Sie sich anmelden [a] /registrieren [r] oder als gast [g] fortfahren?");
         choice = reader.next().toLowerCase().charAt(0);
@@ -76,7 +82,13 @@ public class HomeMain {
                 break;
             case 'r':
                 System.out.println("Registrieren");
-                registrieren(userDataPath);
+                System.out.print("Sind Sie bereits als Person registriert? [j/n]: ");
+                choice = reader.next().toLowerCase().charAt(0);
+                if(choice=='j') {
+                    userRegistrieren(userDataPath);
+                }else{
+
+                }
                 break;
             case 'g':
                 System.out.println("Gast");
@@ -84,12 +96,6 @@ public class HomeMain {
         }
 
 
-
-
-
-
-
-//hallo
 
     }
 
@@ -119,7 +125,7 @@ public class HomeMain {
         }
     }
 
-    public static boolean registrieren(Path p) {
+    public static boolean userRegistrieren(Path p) {
         System.out.println("Registrierbereich");
         if (writeToFile(p, userdataInput(readCsvIntoHashmap(p)))) {
             System.out.println("registriert");
@@ -127,6 +133,8 @@ public class HomeMain {
         }
         return false;
     }
+
+
 
     public static boolean mitarbeiterId() {
         if(checkIfMitarbeiter(userDataPath)) {
@@ -233,6 +241,108 @@ public class HomeMain {
                     password=reader.next();
                     System.out.println("Daten werden weitergegeben ...");
                     return username + ";" + password + ";" + "1" + "\n";
+                }
+            }
+        } while (retry);
+        return null;
+
+    }
+
+    public static int idGetter(Path p){
+        // TODO: 22.04.2022 idGetter fertig machen:
+        // TODO: 22.04.2022 bei id's 1,2,4 nicht 3 verwenden, sondern 5
+        List<String> tempStrList = new ArrayList<String>();
+        int tempInt = 0;
+        try {
+            tempStrList = Files.readAllLines(p);
+        } catch (IOException e) {
+            System.out.println("Fehler beim lesen der Datei");
+            return 0;
+        }
+
+
+
+        int id = 1;
+        int i = 0;
+        boolean gotId = false;
+        do {
+            do{
+                String[] zuSpalten = tempStrList.get(i).split(";");
+                if(id != Integer.parseInt(zuSpalten[i])){
+gotId =false;
+                }
+                    id++;
+            }while(gotId);
+            i++;
+        }while((id<=tempStrList.size()) && (gotId));
+        return id;
+    }
+
+    public static Person personDataInput(HashMap<String, String> userdata) {
+        Person p = new Person();
+        char choice;
+        boolean retry = true;
+
+        String fname;
+        String lname;
+        LocalDate bdate;
+        char gender;
+
+
+        do {
+            System.out.println("neuen Benutzer erstellen\n");
+
+            System.out.println("Was ist der Vorname?");
+            fname = reader.next();
+            System.out.println("Was ist der Nachname?");
+            lname = reader.next();
+            System.out.println("Was ist das Passwort? (wenn neuer Mitarbeiter, hier Mitarbeiterpasswort eingeben:)");
+            password = reader.next();
+            System.out.println("wann haben Sie geburtstag?");
+            System.out.println("Im Format  [YEAR-MONTH-DAY] z.B. 1989-08-21");
+            bdate = LocalDate.parse(reader.next());
+            System.out.println("Welches Geschlecht haben Sie? [m/w/n]");
+            gender = reader.next().toLowerCase().charAt(0);
+
+
+            p.setFirstname(fname);
+            p.setLastname(lname);
+            p.setBirthdate(bdate);
+            p.setPasword(password);
+            p.setGender(gender);
+
+            if(!password.equals(mitarbeiterPW)) {
+                if (userdata.containsKey(username)) {
+                    System.out.println("Benutzer existiert schon!");
+                    System.out.println("erneut versuchen? [j/n]");
+                    choice = reader.next().toLowerCase().charAt(0);
+                    if (choice == 'n') {
+                        retry = false;
+                    }
+
+                } else {
+                    System.out.println("Daten werden weitergegeben ...");
+                    registrationMitarbeiter = false;
+                    return p;
+                }
+            }
+            if (password.equals(mitarbeiterPW)) {
+                System.out.println("hallo neuer Mitarbeiter!");
+                if (userdata.containsKey(username)) {
+                    System.out.println("Benutzer existiert schon!");
+                    System.out.println("erneut versuchen? [j/n]");
+                    choice = reader.next().toLowerCase().charAt(0);
+                    if (choice == 'n') {
+                        retry = false;
+                    }
+
+                } else {
+                    System.out.println("dein persönliches Mitarbeiterpasswort erstellen: ");
+                    password=reader.next();
+                    p.setPasword(password);
+                    System.out.println("Daten werden weitergegeben ...");
+                    registrationMitarbeiter = true;
+                    return p;
                 }
             }
         } while (retry);

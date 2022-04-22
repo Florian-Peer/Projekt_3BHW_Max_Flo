@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileForSKan {
-    static Path pathCSV = Paths.get("D:\\3BHWII\\SWP\\AA_Project_Flo_Max_REP\\Projekt_3BHW_Max_Flo\\Files\\SKData.csv");
+    static Path pathCSV = Paths.get("Files\\SKData.csv");
     // TODO: 08.04.2022 PATH MAXI D:\3BHWII\SWP\AA_Project_Flo_Max_REP\Projekt_3BHW_Max_Flo\Files\SKData.csv 
     static Scanner reader  = new Scanner(System.in);
 
