@@ -126,7 +126,11 @@ public class HomeMain {
         //     KEY      VALUE
         HashMap<String, String> tempMap = readCsvIntoHashmap(userDataPath);
 
-
+        for (String i : tempMap.keySet()) {
+            System.out.println(i);
+        }
+        System.out.println("tempMap.get(username): " + tempMap.get(username));
+        System.out.println(password);
 
         if (tempMap.get(username).equals(password)) {
             return true;
@@ -143,16 +147,7 @@ public class HomeMain {
         }
         return false;
     }
-/*
-    public static boolean personRegistrieren(Path p) {
-        System.out.println("Registrierbereich");
-        if (writeToFile(p, personDataInput(readCsvIntoHashmap(p)))) {
-            System.out.println("registriert");
-            return true;
-        }
-        return false;
-    }
-*/
+
 
 
     public static boolean mitarbeiterId() {
@@ -266,6 +261,7 @@ public class HomeMain {
         return null;
 
     }
+<<<<<<< HEAD
 
     public static int idGetter(Path p){
         // TODO: 22.04.2022 idGetter fertig machen:
@@ -367,8 +363,7 @@ gotId =false;
         } while (retry);
         return null;
 
-    }
-
+=======
     public static void ChangeStatusSK(int eingebID){
         for(Schneekanone sc : schneekanones){
             if(sc.getKid()==eingebID){
@@ -376,5 +371,6 @@ gotId =false;
             }
         }
 
+>>>>>>> origin/main
     }
 }

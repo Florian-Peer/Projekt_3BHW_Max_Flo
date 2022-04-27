@@ -33,7 +33,12 @@ public class payingCustomer extends Customer {
 
     public payingCustomer(int id, String firstname, String lastname, LocalDate birthdate, LocalDate dateOfVisit, char gender,
                           String username, String password) {
-        super(id, firstname, lastname, birthdate, gender, dateOfVisit);
+        this.setId(id);
+        this.setFirstname(firstname);
+        this.setLastname(lastname);
+        this.setBirthdate(birthdate);
+        this.setDateOfVisit(dateOfVisit);
+        this.setGender(gender);
         this.setUsername(username);
         this.setPassword(password);
     }
