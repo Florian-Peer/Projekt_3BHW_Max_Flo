@@ -261,6 +261,7 @@ public class HomeMain {
         return null;
 
     }
+<<<<<<< HEAD
 
     public static int idGetter(Path p){
         // TODO: 22.04.2022 idGetter fertig machen:
@@ -362,8 +363,7 @@ gotId =false;
         } while (retry);
         return null;
 
-    }
-
+=======
     public static void ChangeStatusSK(int eingebID){
         for(Schneekanone sc : schneekanones){
             if(sc.getKid()==eingebID){
@@ -371,5 +371,6 @@ gotId =false;
             }
         }
 
+>>>>>>> origin/main
     }
 }
