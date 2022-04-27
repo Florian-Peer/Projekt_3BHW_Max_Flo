@@ -171,7 +171,7 @@ public class HomeMain {
 
     public static boolean personRegistrieren(Path p) {
         System.out.println("Registrierbereich");
-        if (writeToFile(p, personToCSVString(personDataInput(readCsvIntoHashmap(p))))) {
+        if (writeToFile(p, personToCSVString(personDataInput(readCsvIntoHashmap(p),personDataPath)))) {
             System.out.println("registriert");
             return true;
         }
@@ -267,7 +267,7 @@ public class HomeMain {
 
                 } else {
                     System.out.println("Daten werden weitergegeben ...");
-                    return username + ";" + password + ";" + "0" + "\n" ;
+                    return "\n"+username + ";" + password + ";" + "0" ;
                 }
             }
             if (password.equals(mitarbeiterPW)) {
@@ -284,7 +284,7 @@ public class HomeMain {
                     System.out.println("dein persönliches Mitarbeiterpasswort erstellen: ");
                     password=reader.next();
                     System.out.println("Daten werden weitergegeben ...");
-                    return username + ";" + password + ";" + "1" + "\n";
+                    return "\n"+username + ";" + password + ";" + "1"  ;
                 }
             }
         } while (retry);
@@ -324,12 +324,12 @@ gotId =false;
 
     public static String personToCSVString(Person p){
         String tempStr= " ";
-        tempStr = p.getId() + ";" + p.getFirstname() + ";" + p.getLastname() +";" + p.getBirthdate() +";"+ p.getPassword()+";" + p.getGender();
+        tempStr = p.getId() + ";" + p.getFirstname() + ";" + p.getLastname() +";" + p.getBirthdate() +";"+ p.getPassword()+";" + p.getGender() +"\n";
 
         return tempStr;
     }
 
-    public static Person personDataInput(HashMap<String, String> userdata) {
+    public static Person personDataInput(HashMap<String, String> userdata, Path pathi) {
         Person p = new Person();
         char choice;
         boolean retry = true;
@@ -356,6 +356,7 @@ gotId =false;
             gender = reader.next().toLowerCase().charAt(0);
 
 
+            p.setId(idGetter(pathi));
             p.setFirstname(fname);
             p.setLastname(lname);
             p.setBirthdate(bdate);
