@@ -19,6 +19,7 @@ public class HomeMain {
     static boolean isMitarbeiter = false;
     public static String mitarbeiterPW = "Schnee";
     static Path userDataPath = Paths.get("Files\\UserData.csv");
+    static Path personDataPath = Paths.get("Files\\PersonData.csv");
     static List <Schneekanone> schneekanones= new ArrayList<>();
     static int id;
     // TODO: 01.04.2022 Path Schneekanone erstellen
@@ -124,7 +125,7 @@ public class HomeMain {
                 if(choice=='j') {
                     userRegistrieren(userDataPath);
                 }else{
-
+                    personRegistrieren(personDataPath);
                 }
                 break;
             case 'g':
@@ -166,16 +167,16 @@ public class HomeMain {
         }
         return false;
     }
-/*
+
     public static boolean personRegistrieren(Path p) {
         System.out.println("Registrierbereich");
-        if (writeToFile(p, personDataInput(readCsvIntoHashmap(p)))) {
+        if (writeToFile(p, personToCSVString(personDataInput(readCsvIntoHashmap(p))))) {
             System.out.println("registriert");
             return true;
         }
         return false;
     }
-*/
+
 
 
     public static boolean mitarbeiterId() {
@@ -318,6 +319,13 @@ gotId =false;
             i++;
         }while((id<=tempStrList.size()) && (gotId));
         return id;
+    }
+
+    public static String personToCSVString(Person p){
+        String tempStr= " ";
+        tempStr = p.getId() + ";" + p.getFirstname() + ";" + p.getLastname() +";" + p.getBirthdate() +";"+ p.getPassword()+";" + p.getGender();
+
+        return tempStr;
     }
 
     public static Person personDataInput(HashMap<String, String> userdata) {

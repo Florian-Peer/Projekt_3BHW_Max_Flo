@@ -22,8 +22,9 @@ public class HomeMain {
     static List <Schneekanone> schneekanones= new ArrayList<>();
     static int id;
     // TODO: 01.04.2022 Path Schneekanone erstellen
-    // TODO: 01.04.2022 NONONO DATEI BEHEBEN
+    // TODO: ERLEDIGT 01.04.2022 NONONO DATEI BEHEBEN
     // TODO: 22.04.2022 HASHMAP Verwendung
+    // TODO: ERLEDIGT 22.04.2022 CSV DIRKET AM ANFANG AUFRUFEN DAMIT SIE SCHON VORHER GELADEN SIND
 
     public static void main(String[] args) {
 
@@ -36,58 +37,80 @@ public class HomeMain {
         choice = reader.next().toLowerCase().charAt(0);
         switch (choice) {
             case 'a':
+
                 System.out.println("Anmelden");
                 //Hier wird probiert
                 if (anmelden()) {
+                    //SCHNEEKANONE DIREKT AM ANFANG AUSLESEN
+                    schneekanones = FileForSKan.readSKSFromFile();
                     System.out.println("Supper das hat geklappt");
+                    do {
+                        
+                    }while(choice2=='r');
                     System.out.println("Wie wollen Sie nun fortfahren?");
                     System.out.println("M----Mitarbeiterbereich");
                     //Mitarbeiter ID angeben
                     System.out.println("B----Besucherbereich");
                     choice2 = reader.next().toLowerCase().charAt(0);
-                    switch (choice2) {
-                        case 'm':
-                            System.out.println(isMitarbeiter);
-                            if (mitarbeiterId()) {
-                                System.out.println("\n\n\n\n");
-                                System.out.println("_-_-_-_-_-_-Mitarbeiterbereich-_-_-_-_-_-_-_\n\n");
-                                System.out.println("Sie können nun auf folgende Funktionen zugreifen");
-                                System.out.println("[A] alle registrierte User betrachten");
-                                System.out.println("[S] Schneekanonen steuern\n\n");
-                                System.out.println("[H] Schneekanone hinzufügen");
-                                mmenu = reader.next().toLowerCase().charAt(0);
-                                switch (mmenu) {
-                                    case 'a':
-                                        System.out.println("Diese Personen haben bis jetzt das Skigebiet besucht");
-
-                                    case 's':
-                                        System.out.println("Schneekanonen werden geladen....\n");
-
-                                        schneekanones = FileForSKan.readSKSFromFile();
-                                        schneekanones.forEach(a -> System.out.println(a));
-                                        System.out.print("\n\n");
-                                        System.out.println("Statusänderung ber der ID:");
-                                        id = reader.nextInt();
-                                        ChangeStatusSK(id);
+                    do{
+                        switch (choice2) {
+                            case 'm':
+                                System.out.println(isMitarbeiter);
+                                if (mitarbeiterId()) {
+                                    System.out.println("\n\n\n\n");
+                                    System.out.println("_-_-_-_-_-_-Mitarbeiterbereich-_-_-_-_-_-_-_\n\n");
+                                    System.out.println("Sie können nun auf folgende Funktionen zugreifen");
+                                    System.out.println("[A] alle registrierte User betrachten");
+                                    System.out.println("[S] Schneekanonen steuern");
+                                    System.out.println("[H] Schneekanone hinzufügen");
+                                    System.out.println("[R] Zurück zum START");
+                                    mmenu = reader.next().toLowerCase().charAt(0);
 
 
-                                        break;
-                                    case 'h':
-                                        schneekanones = FileForSKan.readSKSFromFile();
-                                        schneekanones.add(FileForSKan.inputKanoneData());
-                                        FileForSKan.writeSKsToFile(schneekanones);
-                                        break;
+                                    switch (mmenu) {
+                                        case 'a':
+                                            System.out.println("Diese Personen haben bis jetzt das Skigebiet besucht");
+
+                                        case 's':
+                                            System.out.println("Schneekanonen werden geladen....\n");
+
+
+                                            schneekanones.forEach(a -> System.out.println(a));
+                                            System.out.print("\n\n");
+                                            System.out.println("Betriebstatus ändern [true/false]");
+                                            boolean aus;
+                                            aus = reader.nextBoolean();
+                                            if(aus){
+                                                System.out.println("Statusänderung ber der ID:");
+                                                id = reader.nextInt();
+                                                ChangeStatusSK(id);
+                                            }
+
+
+
+                                            break;
+                                        case 'h':
+                                            System.out.println("Sk Hinzufügen");
+
+                                            schneekanones = FileForSKan.readSKSFromFile();
+                                            schneekanones.add(FileForSKan.inputKanoneData());
+                                            FileForSKan.writeSKsToFile(schneekanones);
+                                            break;
+
+
+                                    }
+
 
 
                                 }
 
-                            }
+                                break;
+                            case 'b':
+                                System.out.println("BEss");
 
-                            break;
-                        case 'b':
-                            System.out.println("BEss");
+                        }
+                    }while(mmenu !='r');
 
-                    }
 
                 } else {
                     System.out.println("Fehler bei der Anmeldung");
@@ -126,11 +149,15 @@ public class HomeMain {
         //     KEY      VALUE
         HashMap<String, String> tempMap = readCsvIntoHashmap(userDataPath);
 
+<<<<<<< HEAD
+
+=======
         for (String i : tempMap.keySet()) {
-            System.out.println(i);
+            //System.out.println(i);
         }
         System.out.println("tempMap.get(username): " + tempMap.get(username));
-        System.out.println(password);
+        //System.out.println(password);
+>>>>>>> 011b29f52e1fb766887d4d10e67463060eabd125
 
         if (tempMap.get(username).equals(password)) {
             return true;
@@ -147,7 +174,16 @@ public class HomeMain {
         }
         return false;
     }
-
+/*
+    public static boolean personRegistrieren(Path p) {
+        System.out.println("Registrierbereich");
+        if (writeToFile(p, personDataInput(readCsvIntoHashmap(p)))) {
+            System.out.println("registriert");
+            return true;
+        }
+        return false;
+    }
+*/
 
 
     public static boolean mitarbeiterId() {
@@ -261,7 +297,6 @@ public class HomeMain {
         return null;
 
     }
-<<<<<<< HEAD
 
     public static int idGetter(Path p){
         // TODO: 22.04.2022 idGetter fertig machen:
@@ -363,7 +398,8 @@ gotId =false;
         } while (retry);
         return null;
 
-=======
+    }
+
     public static void ChangeStatusSK(int eingebID){
         for(Schneekanone sc : schneekanones){
             if(sc.getKid()==eingebID){
@@ -371,6 +407,5 @@ gotId =false;
             }
         }
 
->>>>>>> origin/main
     }
 }
