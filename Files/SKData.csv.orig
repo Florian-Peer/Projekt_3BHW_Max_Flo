@@ -1,0 +1,13 @@
+1;Spenglerwiese;BHD;true;
+<<<<<<< HEAD
+4;Kennekmaschin;test;true;
+2;AAAAAAAAAAA;er;true;
+2;nononoMachine;test;false;
+1;Hallo;Halli;false;
+3;des;isses;false;
+=======
+2;BAUERNHANG;UUU;true;
+3;TEST;test;true;
+4;Kennekmaschin;test;true;
+5;sepp;depp;false;
+>>>>>>> origin/main

@@ -32,10 +32,10 @@ public class Employee extends Person {
 
     public Employee(){
 
-        this(0, " ", " ", null, ' ',0,TypeOfWork.not_specified,0);
+        this(0, " ", " "," ", null, ' ',0,TypeOfWork.not_specified,0);
     }
-    public Employee(int id, String firstname, String lastname, LocalDate birthdate, char gender, int employeeid, TypeOfWork typeOfWork, double basesalary){
-        super(id,firstname,lastname,birthdate,gender);
+    public Employee(int id, String firstname, String lastname, String password, LocalDate birthdate, char gender, int employeeid, TypeOfWork typeOfWork, double basesalary){
+        super(id,firstname,lastname,password,birthdate,gender);
         this.setEmployeeid(employeeid);
         this.setTypeOfWork(typeOfWork);
         this.setBasesalary(basesalary);
