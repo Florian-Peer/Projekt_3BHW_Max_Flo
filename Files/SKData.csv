@@ -2,9 +2,10 @@
 2;Kennekmaschin;test;true;
 3;AAAAAAAAAAA;er;true;
 4;nononoMachine;test;true;
-5;Hallo;Halli;true;
+5;Hallo;Halli;false;
 6;des;isses;false;
 7;BAUERNHANG;UUU;true;
 8;TEST;test;true;
 9;Kennekmaschin;test;true;
 10;sepp;depp;true;
+11;BibaBuba;BauBau;true;
