@@ -82,7 +82,7 @@ public class HomeMain {
                         switch (choice2) {
                             case 'm':
 
-                                System.out.println(isMitarbeiter);
+
                                 if (mitarbeiterId()) {
                                     System.out.println("\n\n\n\n");
                                     System.out.println("_-_-_-_-_-_-Mitarbeiterbereich-_-_-_-_-_-_-_\n\n");
