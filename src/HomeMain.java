@@ -8,6 +8,23 @@ import StatusThings.*;
 import Schneekanone.*;
 
 public class HomeMain {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
+    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
+    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
+    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
+    public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
+    public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
+    public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
+    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
     static Scanner reader = new Scanner(System.in);
     static char choice;
@@ -28,35 +45,43 @@ public class HomeMain {
     // TODO: ERLEDIGT 22.04.2022 CSV DIRKET AM ANFANG AUFRUFEN DAMIT SIE SCHON VORHER GELADEN SIND
 
     public static void main(String[] args) {
-
-        System.out.println("Willkommen");
-        System.out.println("Dies ist nur ein Versuch");
-
-
-
-        System.out.println("Wollen Sie sich anmelden [a] /registrieren [r] oder als gast [g] fortfahren?");
+        System.out.println("\n");
+        System.out.println(ANSI_BLUE+"_-_-_-_-_-_-_-Willkommen-_-_-_-_-_-_-_"+ANSI_RESET);
+        System.out.println("Wollen Sie sich ...");
+        System.out.println(ANSI_BLUE+"[a] anmelden ");
+        System.out.println(ANSI_BLUE+"[r] registrieren ");
+        System.out.println(ANSI_BLUE+"[g] gast "+ANSI_RESET);
+        System.out.println();
         choice = reader.next().toLowerCase().charAt(0);
         switch (choice) {
             case 'a':
 
-                System.out.println("Anmelden");
+                System.out.println(ANSI_YELLOW+"LOGIN "+ANSI_RESET);
                 //Hier wird probiert
                 if (anmelden()) {
+                    System.out.println("anmelden POSITIV\n\n\n");
+                    do{
+
                     //SCHNEEKANONE DIREKT AM ANFANG AUSLESEN
                     schneekanones = FileForSKan.readSKSFromFile();
-                    System.out.println("Supper das hat geklappt");
-                    do {
-                        
-                    }while(choice2=='r');
-                    System.out.println("Wie wollen Sie nun fortfahren?");
+                    System.out.println("////////////////////////////////");
 
-                    System.out.println("M----Mitarbeiterbereich");
+                    if(mitarbeiterId()){
+                        System.out.println("M----Mitarbeiterbereich");
+
+                    }
+                    else{
+                        System.out.println("\n");
+                    }
+
                     //Mitarbeiter ID angeben
                     System.out.println("B----Besucherbereich");
                     choice2 = reader.next().toLowerCase().charAt(0);
-                    do{
+
+
                         switch (choice2) {
                             case 'm':
+
                                 System.out.println(isMitarbeiter);
                                 if (mitarbeiterId()) {
                                     System.out.println("\n\n\n\n");
@@ -86,6 +111,7 @@ public class HomeMain {
                                                 System.out.println("Statusänderung ber der ID:");
                                                 id = reader.nextInt();
                                                 ChangeStatusSK(id);
+                                                FileForSKan.writeSKsToFile(schneekanones);
                                             }
 
 
@@ -104,14 +130,19 @@ public class HomeMain {
 
 
 
+                                }else {
+                                    System.out.println("Wer LESEN kann ...");
                                 }
+
 
                                 break;
                             case 'b':
-                                System.out.println("BEss");
+                                System.out.println("/////////////////////////////");
+                                System.out.println("BESUCHERAREA");
+
 
                         }
-                    }while(mmenu !='r');
+                    }while(mmenu =='r');
 
 
                 } else {
@@ -182,11 +213,10 @@ public class HomeMain {
 
     public static boolean mitarbeiterId() {
         if(checkIfMitarbeiter(userDataPath)) {
-            System.out.println("Sie sind ein Mitarbeiter");
+
             return true;
         }
-        System.out.println("Sie sind kein Mitarbeiter!");
-        System.out.println("Schlingel!");
+
         return false;
     }
 
@@ -408,5 +438,9 @@ gotId =false;
             }
         }
 
+    }
+    public char KeinMitarbeiterZM(){
+        char zm;
+        return zm='r';
     }
 }
