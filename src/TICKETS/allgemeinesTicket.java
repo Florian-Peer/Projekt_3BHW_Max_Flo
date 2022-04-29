@@ -1,6 +1,6 @@
 package TICKETS;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class allgemeinesTicket {
     private int _ticketID;

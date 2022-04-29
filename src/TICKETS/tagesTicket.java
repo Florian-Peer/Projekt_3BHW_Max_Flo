@@ -1,6 +1,5 @@
 package TICKETS;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class tagesTicket extends allgemeinesTicket{
@@ -21,9 +20,10 @@ public class tagesTicket extends allgemeinesTicket{
         this._endzeit=endzeit;
     }
     public tagesTicket(){
-        this(null,null);
+        this(0,TypeOfTicket.NichtFestgelegt,"",null,0.0,null,null);
     }
-    public tagesTicket(Date begin,Date end){
+    public tagesTicket(int ID, TypeOfTicket typeof, String name,Date kauf, double price, Date begin, Date end){
+        super(ID,typeof,name,kauf,price);
         this.setBeginn(begin);
         this.setEndzeit(end);
     }
