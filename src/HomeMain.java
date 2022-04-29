@@ -6,6 +6,7 @@ import java.util.*;
 import Person.Person;
 import StatusThings.*;
 import Schneekanone.*;
+import TICKETS.TypeOfTicket;
 
 public class HomeMain {
 
@@ -166,7 +167,15 @@ public class HomeMain {
             case 'k':
                 System.out.println(ANSI_PURPLE+"Kassabereich"+ANSI_RESET);
                 System.out.println("Welche Art von Ticket?");
-                System.out.println("Auswahlmöglichkeit");
+                System.out.println("Auswahlmöglichkeiten: ");
+                System.out.print(ANSI_CYAN_BACKGROUND+ANSI_BLACK);
+                for(TypeOfTicket value:TypeOfTicket.values()){
+                    int i = 1;
+                    // TODO: 29.04.2022 da war i grad
+                    System.out.print(value+"i"+"\n");
+                    i++;
+                }
+                System.out.print(ANSI_RESET);
                 break;
         }
 

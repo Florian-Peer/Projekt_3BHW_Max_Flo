@@ -9,7 +9,7 @@ public class Ticket {
         Halbtagesticket -> Expiredate = buytime + 12 h
         damit man expiredate nicht manuell ausrechnen muss
      */
-
+/*
     private int _ticketId;
     private int _typeOfTicket;
     private LocalDateTime _ticketBuyTime;
@@ -62,6 +62,6 @@ public class Ticket {
     public String toString() {
         return this.getTicketId() + " " + this._typeOfTicket + " " + this._ticketBuyTime + " " + this._ticketExpireDate;
     }
-
+*/
 
 }

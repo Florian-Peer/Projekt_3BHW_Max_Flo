@@ -60,7 +60,7 @@ public class payingCustomer extends Customer {
         }
         return false;
     }
-
+/*
     public boolean removeTicket(int ticketIdToDelete) {
         for (Ticket t : this._ticket) {
             if (t.getTicketId() == ticketIdToDelete) {
@@ -69,4 +69,6 @@ public class payingCustomer extends Customer {
         }
         return false;
     }
+    */
+
 }
