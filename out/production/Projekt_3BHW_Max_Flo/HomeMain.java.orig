@@ -9,8 +9,27 @@ import Schneekanone.*;
 
 public class HomeMain {
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
+    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
+    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
+    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
+    public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
+    public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
+    public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
+    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+
     static Scanner reader = new Scanner(System.in);
     static char choice;
+    static char redo;
     static char choice2;
     static char mmenu;
     static String username =" ";
@@ -19,6 +38,7 @@ public class HomeMain {
     static boolean isMitarbeiter = false;
     public static String mitarbeiterPW = "Schnee";
     static Path userDataPath = Paths.get("Files\\UserData.csv");
+    static Path personDataPath = Paths.get("Files\\PersonData.csv");
     static List <Schneekanone> schneekanones= new ArrayList<>();
     static int id;
     // TODO: 01.04.2022 Path Schneekanone erstellen
@@ -27,35 +47,45 @@ public class HomeMain {
     // TODO: ERLEDIGT 22.04.2022 CSV DIRKET AM ANFANG AUFRUFEN DAMIT SIE SCHON VORHER GELADEN SIND
 
     public static void main(String[] args) {
-
-        System.out.println("Willkommen");
-        System.out.println("Dies ist nur ein Versuch");
-
-
-
-        System.out.println("Wollen Sie sich anmelden [a] /registrieren [r] oder als gast [g] fortfahren?");
+        System.out.println("\n");
+        System.out.println(ANSI_BLUE + "_-_-_-_-_-_-_-Willkommen-_-_-_-_-_-_-_" + ANSI_RESET);
+        do{
+        System.out.println("Wollen Sie sich ...");
+        System.out.println(ANSI_BLUE + "[a] anmelden ");
+        System.out.println(  "[r] registrieren ");
+        System.out.println(  "[k] Kassa " + ANSI_RESET);
+        System.out.println();
         choice = reader.next().toLowerCase().charAt(0);
         switch (choice) {
             case 'a':
 
-                System.out.println("Anmelden");
+                System.out.println(ANSI_YELLOW + "LOGIN " + ANSI_RESET);
                 //Hier wird probiert
                 if (anmelden()) {
-                    //SCHNEEKANONE DIREKT AM ANFANG AUSLESEN
-                    schneekanones = FileForSKan.readSKSFromFile();
-                    System.out.println("Supper das hat geklappt");
+                    System.out.println("anmelden POSITIV\n\n\n");
                     do {
-                        
-                    }while(choice2=='r');
-                    System.out.println("Wie wollen Sie nun fortfahren?");
-                    System.out.println("M----Mitarbeiterbereich");
-                    //Mitarbeiter ID angeben
-                    System.out.println("B----Besucherbereich");
-                    choice2 = reader.next().toLowerCase().charAt(0);
-                    do{
+
+                        //SCHNEEKANONE DIREKT AM ANFANG AUSLESEN
+                        schneekanones = FileForSKan.readSKSFromFile();
+                        System.out.println("////////////////////////////////");
+
+                        if (mitarbeiterId()) {
+                            System.out.println("M----Mitarbeiterbereich");
+
+                        } else {
+                            System.out.println("\n");
+                        }
+
+                        //Mitarbeiter ID angeben
+                        System.out.println("B----Besucherbereich");
+                        choice2 = reader.next().toLowerCase().charAt(0);
+
+
                         switch (choice2) {
                             case 'm':
-                                System.out.println(isMitarbeiter);
+<<<<<<< HEAD
+
+
                                 if (mitarbeiterId()) {
                                     System.out.println("\n\n\n\n");
                                     System.out.println("_-_-_-_-_-_-Mitarbeiterbereich-_-_-_-_-_-_-_\n\n");
@@ -65,51 +95,71 @@ public class HomeMain {
                                     System.out.println("[H] Schneekanone hinzufügen");
                                     System.out.println("[R] Zurück zum START");
                                     mmenu = reader.next().toLowerCase().charAt(0);
+=======
+                                do {
+>>>>>>> 5c8f8523efbbf669e5348ad9ad490fe67ce5024f
 
 
-                                    switch (mmenu) {
-                                        case 'a':
-                                            System.out.println("Diese Personen haben bis jetzt das Skigebiet besucht");
-
-                                        case 's':
-                                            System.out.println("Schneekanonen werden geladen....\n");
-
-
-                                            schneekanones.forEach(a -> System.out.println(a));
-                                            System.out.print("\n\n");
-                                            System.out.println("Betriebstatus ändern [true/false]");
-                                            boolean aus;
-                                            aus = reader.nextBoolean();
-                                            if(aus){
-                                                System.out.println("Statusänderung ber der ID:");
-                                                id = reader.nextInt();
-                                                ChangeStatusSK(id);
-                                            }
+                                    if (mitarbeiterId()) {
+                                        System.out.println("\n\n\n\n");
+                                        System.out.println("_-_-_-_-_-_-Mitarbeiterbereich-_-_-_-_-_-_-_\n\n");
+                                        System.out.println("Sie können nun auf folgende Funktionen zugreifen");
+                                        System.out.println("[A] alle registrierte User betrachten");
+                                        System.out.println("[S] Schneekanonen steuern");
+                                        System.out.println("[H] Schneekanone hinzufügen");
+                                        System.out.println("[R] Zurück zum START");
+                                        mmenu = reader.next().toLowerCase().charAt(0);
 
 
-
-                                            break;
-                                        case 'h':
-                                            System.out.println("Sk Hinzufügen");
-
-                                            schneekanones = FileForSKan.readSKSFromFile();
-                                            schneekanones.add(FileForSKan.inputKanoneData());
-                                            FileForSKan.writeSKsToFile(schneekanones);
-                                            break;
+                                        switch (mmenu) {
+                                            case 'a':
+                                                System.out.println("Diese Personen haben bis jetzt das Skigebiet besucht");
+                                                break;
+                                            case 's':
+                                                System.out.println("Schneekanonen werden geladen....\n");
 
 
+                                                schneekanones.forEach(a -> System.out.println(a));
+                                                System.out.print("\n\n");
+                                                System.out.println("Betriebstatus ändern [true/false]");
+                                                boolean aus;
+                                                aus = reader.nextBoolean();
+                                                if (aus) {
+                                                    System.out.println("Statusänderung ber der ID:");
+                                                    id = reader.nextInt();
+                                                    ChangeStatusSK(id);
+                                                    FileForSKan.writeSKsToFile(schneekanones);
+                                                }
+
+
+                                                break;
+                                            case 'h':
+                                                System.out.println("Sk Hinzufügen");
+
+                                                schneekanones = FileForSKan.readSKSFromFile();
+                                                schneekanones.add(FileForSKan.inputKanoneData());
+                                                FileForSKan.writeSKsToFile(schneekanones);
+                                                break;
+
+
+                                        }
+
+
+                                    } else {
+                                        System.out.println("Wer LESEN kann ...");
                                     }
-
-
-
-                                }
+                                    System.out.println("zurück zum Mitarbeitermenü? [j/n]");
+                                    redo=reader.next().toLowerCase().charAt(0);
+                                }while(redo=='j');
 
                                 break;
                             case 'b':
-                                System.out.println("BEss");
+                                System.out.println("/////////////////////////////");
+                                System.out.println("BESUCHERAREA");
+                                break;
 
                         }
-                    }while(mmenu !='r');
+                    } while (mmenu == 'r');
 
 
                 } else {
@@ -118,50 +168,51 @@ public class HomeMain {
 
                 break;
             case 'r':
-                System.out.println("Registrieren");
+                System.out.println(ANSI_PURPLE+"Registrieren"+ANSI_RESET);
                 System.out.print("Sind Sie bereits als Person registriert? [j/n]: ");
                 choice = reader.next().toLowerCase().charAt(0);
-                if(choice=='j') {
+                if (choice == 'j') {
                     userRegistrieren(userDataPath);
-                }else{
-
+                } else {
+                    personRegistrieren(personDataPath);
                 }
                 break;
-            case 'g':
-                System.out.println("Gast");
+            case 'k':
+                System.out.println(ANSI_PURPLE+"Kassabereich"+ANSI_RESET);
+                System.out.println("Welche Art von Ticket?");
+                System.out.println("Auswahlmöglichkeit");
                 break;
         }
 
-
-
+            System.out.println("Programm beenden? [j/n]");
+            redo = reader.next().toLowerCase().charAt(0);
+    }while(redo != 'j');
     }
 
 
 
 
     public static boolean anmelden() {
-        System.out.println("Anmeldungsbereich");
+        System.out.println(ANSI_PURPLE + "Anmeldebereich" + ANSI_RESET);
         System.out.println("[Benutzername:]");
         username = reader.next();
         System.out.println("[Passwort]");
         password = reader.next();
 
-        //     KEY      VALUE
+        //      KEY      VALUE
         HashMap<String, String> tempMap = readCsvIntoHashmap(userDataPath);
 
-<<<<<<< HEAD
+        if(tempMap.containsKey(username)) {
 
-=======
-        for (String i : tempMap.keySet()) {
-            //System.out.println(i);
+            if (tempMap.get(username).equals(password)) {
+                return true;
+            } else {
+                System.out.println("FALSCHE DATEN!");
+                return false;
+            }
         }
-        System.out.println("tempMap.get(username): " + tempMap.get(username));
-        //System.out.println(password);
->>>>>>> 011b29f52e1fb766887d4d10e67463060eabd125
-
-        if (tempMap.get(username).equals(password)) {
-            return true;
-        } else {
+        else {
+            System.out.println("FALSCHE DATEN!");
             return false;
         }
     }
@@ -174,25 +225,24 @@ public class HomeMain {
         }
         return false;
     }
-/*
+
     public static boolean personRegistrieren(Path p) {
         System.out.println("Registrierbereich");
-        if (writeToFile(p, personDataInput(readCsvIntoHashmap(p)))) {
+        if (writeToFile(p, personToCSVString(personDataInput(readCsvIntoHashmap(p),personDataPath)))) {
             System.out.println("registriert");
             return true;
         }
         return false;
     }
-*/
+
 
 
     public static boolean mitarbeiterId() {
         if(checkIfMitarbeiter(userDataPath)) {
-            System.out.println("Sie sind ein Mitarbeiter");
+
             return true;
         }
-        System.out.println("Sie sind kein Mitarbeiter!");
-        System.out.println("Schlingel!");
+
         return false;
     }
 
@@ -273,7 +323,7 @@ public class HomeMain {
 
                 } else {
                     System.out.println("Daten werden weitergegeben ...");
-                    return username + ";" + password + ";" + "0" + "\n" ;
+                    return "\n"+username + ";" + password + ";" + "0" ;
                 }
             }
             if (password.equals(mitarbeiterPW)) {
@@ -290,7 +340,7 @@ public class HomeMain {
                     System.out.println("dein persönliches Mitarbeiterpasswort erstellen: ");
                     password=reader.next();
                     System.out.println("Daten werden weitergegeben ...");
-                    return username + ";" + password + ";" + "1" + "\n";
+                    return "\n"+username + ";" + password + ";" + "1"  ;
                 }
             }
         } while (retry);
@@ -328,7 +378,14 @@ gotId =false;
         return id;
     }
 
-    public static Person personDataInput(HashMap<String, String> userdata) {
+    public static String personToCSVString(Person p){
+        String tempStr= " ";
+        tempStr = p.getId() + ";" + p.getFirstname() + ";" + p.getLastname() +";" + p.getBirthdate() +";"+ p.getPassword()+";" + p.getGender() +"\n";
+
+        return tempStr;
+    }
+
+    public static Person personDataInput(HashMap<String, String> userdata, Path pathi) {
         Person p = new Person();
         char choice;
         boolean retry = true;
@@ -355,6 +412,7 @@ gotId =false;
             gender = reader.next().toLowerCase().charAt(0);
 
 
+            p.setId(idGetter(pathi));
             p.setFirstname(fname);
             p.setLastname(lname);
             p.setBirthdate(bdate);
@@ -407,5 +465,9 @@ gotId =false;
             }
         }
 
+    }
+    public char KeinMitarbeiterZM(){
+        char zm;
+        return zm='r';
     }
 }
