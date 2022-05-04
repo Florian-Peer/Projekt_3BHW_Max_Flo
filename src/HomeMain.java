@@ -169,13 +169,17 @@ public class HomeMain {
                 System.out.println("Welche Art von Ticket?");
                 System.out.println("Auswahlmöglichkeiten: ");
                 System.out.print(ANSI_CYAN_BACKGROUND+ANSI_BLACK);
+                int i = 1;
                 for(TypeOfTicket value:TypeOfTicket.values()){
-                    int i = 1;
                     // TODO: 29.04.2022 da war i grad
-                    System.out.print(value+"i"+"\n");
+                    System.out.println("   "+String.valueOf(i) +"     "+ value);
                     i++;
                 }
                 System.out.print(ANSI_RESET);
+
+                System.out.print("Ihre Wahl?: ");
+                choice=reader.next().charAt(0);
+
                 break;
         }
 
