@@ -54,7 +54,6 @@ public class HomeMain {
         System.out.println("Wollen Sie sich ...");
         System.out.println(ANSI_BLUE + "[a] anmelden ");
         System.out.println(  "[r] registrieren ");
-        System.out.println(  "[k] Kassa " + ANSI_RESET);
         System.out.println();
         choice = reader.next().toLowerCase().charAt(0);
         switch (choice) {
@@ -78,7 +77,7 @@ public class HomeMain {
                         }
 
                         //Mitarbeiter ID angeben
-                        System.out.println("B----Besucherbereich");
+                        System.out.println("K----Kassabereich");
                         choice2 = reader.next().toLowerCase().charAt(0);
 
 
@@ -140,9 +139,22 @@ public class HomeMain {
                                 }while(redo=='j');
 
                                 break;
-                            case 'b':
-                                System.out.println("/////////////////////////////");
-                                System.out.println("BESUCHERAREA");
+                            case 'k':
+                                System.out.println(ANSI_PURPLE+"Kassabereich"+ANSI_RESET);
+                                System.out.println("Welche Art von Ticket?");
+                                System.out.println("Auswahlmöglichkeiten: ");
+                                System.out.print(ANSI_CYAN_BACKGROUND+ANSI_BLACK);
+                                int i = 0;
+                                for(TypeOfTicket value:TypeOfTicket.values()){
+                                    // TODO: 29.04.2022 da war i grad
+                                    System.out.println("   "+String.valueOf(i) +"     "+ value);
+                                    i++;
+                                }
+                                System.out.print(ANSI_RESET);
+
+                                System.out.print("Ihre Wahl?: ");
+                                choice=reader.next().charAt(0);
+
                                 break;
 
                         }
@@ -164,23 +176,7 @@ public class HomeMain {
                     personRegistrieren(personDataPath);
                 }
                 break;
-            case 'k':
-                System.out.println(ANSI_PURPLE+"Kassabereich"+ANSI_RESET);
-                System.out.println("Welche Art von Ticket?");
-                System.out.println("Auswahlmöglichkeiten: ");
-                System.out.print(ANSI_CYAN_BACKGROUND+ANSI_BLACK);
-                int i = 1;
-                for(TypeOfTicket value:TypeOfTicket.values()){
-                    // TODO: 29.04.2022 da war i grad
-                    System.out.println("   "+String.valueOf(i) +"     "+ value);
-                    i++;
-                }
-                System.out.print(ANSI_RESET);
 
-                System.out.print("Ihre Wahl?: ");
-                choice=reader.next().charAt(0);
-
-                break;
         }
 
             System.out.println("Programm beenden? [j/n]");

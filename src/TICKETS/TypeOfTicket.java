@@ -1,5 +1,5 @@
 package TICKETS;
 
 public enum TypeOfTicket {
-    Tagesticket,Saisonticket,Halbtagesticket,Dreistundenticket,NichtFestgelegt
+    NichtFestgelegt,Tagesticket,Saisonticket,Halbtagesticket,Dreistundenticket
 }
