@@ -1,12 +1,16 @@
 import java.io.IOException;
 import java.nio.file.*;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
 import Person.Person;
+import Repositorys.IRepTicket;
+import Repositorys.RepTicket;
 import StatusThings.*;
 import Schneekanone.*;
 import TICKETS.TypeOfTicket;
+import TICKETS.allgemeinesTicket;
 
 public class HomeMain {
 
@@ -130,6 +134,7 @@ public class HomeMain {
                                                     System.out.println(ANSI_PURPLE + "Kassabereich" + ANSI_RESET);
                                                     System.out.println("Welche Art von Ticket?");
                                                     System.out.println("Auswahlmöglichkeiten: ");
+                                                    ausgabeTESTallTickets();
                                                     System.out.print(ANSI_CYAN_BACKGROUND + ANSI_BLACK);
                                                     int i = 0;
                                                     for (TypeOfTicket value : TypeOfTicket.values()) {
@@ -498,6 +503,57 @@ public class HomeMain {
         System.out.println(ticketType);
 
     }
+    public static void ausgabeTESTallTickets(){
+        IRepTicket rep = null;
+        try{
+            rep = new RepTicket();
+            rep.open();
+            System.out.println("DATEN HIER");
+            for(allgemeinesTicket aT : rep.allTickets()){
+                System.out.println(aT);
+            }
+
+
+
+        } catch (ClassNotFoundException e) {
+            System.out.println("KOA TREIBER LUL");
+        } catch (SQLException e) {
+            System.out.println("DB FEHLER  wia Cringe");
+        }finally {
+            try {rep.close();
+
+            } catch (SQLException e) {
+                System.out.println("SCHLIASN GABUT");
+            }
+
+        }
+    }
+    /*
+    public static void ausgabeAllWeapon(){
+        IRepositoryWeapons rep = null;
+        try {
+            rep = new RepositoryWeapons();
+            rep.open();
+
+            System.out.println("ID:    Typ:      Name:      Manufaktur:        Kraft:           Land:");
+            for (Weapons aw2 : rep.selectAllWeapon()){
+                System.out.println(aw2);
+            }
+        } catch (ClassNotFoundException e) {
+            System.out.println("MySQL-Treiber konnte nicht geladen werden!");
+
+        } catch (SQLException e) {
+            System.out.println("Datenbankfehler!");
+        } finally {
+            try {
+                rep.close();
+            } catch (SQLException e) {
+                System.out.println("DB-Verbindung konnte nicht beendet werden!");
+            }
+        }
+    }
+    */
+
 
 
 }
