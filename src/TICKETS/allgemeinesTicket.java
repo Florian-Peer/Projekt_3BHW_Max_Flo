@@ -54,6 +54,6 @@ public class allgemeinesTicket {
     }
     @Override
     public String toString(){
-        return this._ticketID + " "+this._typeofticket+""+this._ticketName+" "+this._datum+" "+this._price;
+        return this._ticketID +" "+this._typeofticket+" "+this._ticketName+" "+this._datum+" "+this._price;
     }
 }
