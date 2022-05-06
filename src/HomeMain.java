@@ -42,9 +42,8 @@ public class HomeMain {
     static Path personDataPath = Paths.get("Files\\PersonData.csv");
     static List<Schneekanone> schneekanones = new ArrayList<>();
     static int id;
-    // TODO: 01.04.2022 Path Schneekanone erstellen
     // TODO: ERLEDIGT 01.04.2022 NONONO DATEI BEHEBEN
-    // TODO: 22.04.2022 HASHMAP Verwendung
+    // TODO: ERLEDIGT 22.04.2022 HASHMAP Verwendung
     // TODO: ERLEDIGT 22.04.2022 CSV DIRKET AM ANFANG AUFRUFEN DAMIT SIE SCHON VORHER GELADEN SIND
 
     public static void main(String[] args) {
@@ -100,6 +99,7 @@ public class HomeMain {
                                             switch (mmenu) {
                                                 case 'a':
                                                     System.out.println("Diese Personen haben bis jetzt das Skigebiet besucht");
+                                                    printAllUsers(personDataPath);
                                                     break;
                                                 case 's':
                                                     System.out.println("Schneekanonen werden geladen....\n");
@@ -169,9 +169,9 @@ public class HomeMain {
                     break;
                 case 'r':
                     System.out.println(ANSI_PURPLE + "Registrieren" + ANSI_RESET);
-                    System.out.print("Sind Sie bereits als Person registriert? [j/n]: ");
+                    System.out.print("neuen Mitarbeiter(user) registrieren[u]\noder neuen Schifahrer registrieren[s] ");
                     choice = reader.next().toLowerCase().charAt(0);
-                    if (choice == 'j') {
+                    if (choice == 'u') {
                         userRegistrieren(userDataPath);
                     } else {
                         personRegistrieren(personDataPath);
@@ -458,6 +458,34 @@ public class HomeMain {
 
     }
 
+    public static void printAllUsers(Path p){
+        List<String> tempStrList = new ArrayList<String>();
+
+        try {
+            tempStrList = Files.readAllLines(p);
+        } catch (IOException e) {
+            System.out.println("Fehler beim lesen der Datei");
+        }
+
+        for (int i = 0; i < tempStrList.size(); i++) {
+            String[] zuSpalten = tempStrList.get(i).split(";");
+            String geschlecht = "not specified";
+            if(zuSpalten[5].equals("m")){
+                geschlecht="männlich";
+            }
+            if(zuSpalten[5].equals("w")){
+                geschlecht="weiblich";
+            }
+            System.out.println("ID: "+zuSpalten[0]);
+            System.out.println("Vorname: "+zuSpalten[1]);
+            System.out.println("Nachname: "+zuSpalten[2]);
+            System.out.println("Geburtsdatum: "+zuSpalten[3]);
+            System.out.println("Geschlecht: "+ geschlecht +"\n\n"+"-----------------------------"+"\n");
+            System.out.println("hallo");
+            //jagga
+        }
+    }
+
     public static void kassa(int whichTicket){
         int i=0;
         String ticketType ="NULL";
@@ -466,12 +494,10 @@ public class HomeMain {
                 ticketType= String.valueOf(value);
             }
             i++;
-        }            System.out.println(ticketType);
+        }
+        System.out.println(ticketType);
 
     }
 
-    public char KeinMitarbeiterZM() {
-        char zm;
-        return zm = 'r';
-    }
+
 }
