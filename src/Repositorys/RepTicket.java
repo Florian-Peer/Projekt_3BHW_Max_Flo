@@ -134,4 +134,33 @@ public class RepTicket implements IRepTicket {
             return null;
         }
     }
+
+    @Override
+    public List<saisonTicket> allSaisonTicket() throws SQLException {
+        List<saisonTicket> saisonTicket = new ArrayList<>();
+        PreparedStatement pStmt = this._connection.prepareStatement("select ticketId,typeOfTicket,ticketName,datum, endeSaison,price,fname,lname from saisonTicket as st join allgeTickets as at on st.saisonTiId=at.ticketid;\n");
+        ResultSet result = pStmt.executeQuery();
+        saisonTicket st1;
+        while (result.next()){
+            st1 = new saisonTicket();
+            st1.setTicketId(result.getInt("ticketId"));
+            st1.setTypeOfTicket(INTOtypeOfTicket(result.getInt("typeOfTicket")));
+            st1.setTicketName(result.getString("ticketName"));
+            st1.setDatum(result.getDate("datum"));
+            st1.setendeSaison(result.getDate("endeSaison"));
+            st1.setPrice(result.getDouble("price"));
+            st1.setfname(result.getString("fname"));
+            st1.setlname(result.getString("lname"));
+            saisonTicket.add(st1);
+
+        }
+        if(saisonTicket.size()>=1){
+            return saisonTicket;
+
+        }
+        else {
+            System.out.println("NIX DRINE IN SAISONTICKETS TAGES");
+            return null;
+        }
+    }
 }

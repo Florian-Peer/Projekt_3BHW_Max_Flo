@@ -24,4 +24,6 @@ public interface IRepTicket {
 
     List<tagesTicket> alltagesTicket() throws SQLException;
 
+    List<saisonTicket> allSaisonTicket() throws SQLException;
+
 }

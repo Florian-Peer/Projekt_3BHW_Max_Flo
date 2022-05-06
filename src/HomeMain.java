@@ -11,6 +11,7 @@ import StatusThings.*;
 import Schneekanone.*;
 import TICKETS.TypeOfTicket;
 import TICKETS.allgemeinesTicket;
+import TICKETS.saisonTicket;
 import TICKETS.tagesTicket;
 
 public class HomeMain {
@@ -137,6 +138,7 @@ public class HomeMain {
                                                     System.out.println("Auswahlmöglichkeiten: ");
                                                     ausgabeTESTallTickets();
                                                     tagesTicketTEST();
+                                                    saisonTicketTEST();
                                                     System.out.print(ANSI_CYAN_BACKGROUND + ANSI_BLACK);
                                                     int i = 0;
                                                     for (TypeOfTicket value : TypeOfTicket.values()) {
@@ -572,6 +574,29 @@ public class HomeMain {
         }finally {
             try {
                 ir.close();
+            }catch (SQLException e){
+                System.out.println("DB COULD NOT BE CLOSED");
+            }
+        }
+    }
+    public static  void saisonTicketTEST(){
+        IRepTicket iR = null;
+        try {
+            iR = new RepTicket();
+            iR.open();
+            for(saisonTicket st : iR.allSaisonTicket()){
+                System.out.print(ANSI_PURPLE_BACKGROUND);
+                System.out.println(st);
+                System.out.print(ANSI_RESET);
+            }
+        } catch (ClassNotFoundException e) {
+            System.out.println("DRIVER IS NOT THERE WHERE IT SHOULD BE");
+        } catch (SQLException e) {
+            System.out.println("ERROR IN DB");
+
+        }finally {
+            try {
+                iR.close();
             }catch (SQLException e){
                 System.out.println("DB COULD NOT BE CLOSED");
             }
