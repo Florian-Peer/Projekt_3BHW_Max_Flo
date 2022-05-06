@@ -114,16 +114,16 @@ public class RepTicket implements IRepTicket {
     }
 
     @Override
-    public List<tagesTicket> tagesTicket() throws SQLException {
+    public List<tagesTicket> alltagesTicket() throws SQLException {
         List <tagesTicket> tickets = new ArrayList<>();
-        PreparedStatement pStmt = this._connection.prepareStatement("select * from tagesTicket JOIN allgeTickets on tagesTicket.tagesTiId = at.ticketId");
+        PreparedStatement pStmt = this._connection.prepareStatement("select ticketId,typeOfTicket,ticketName,datum,price,beginnZeit,endZeit from tagesTicket as tt join allgeTickets as at on tt.tagesTiId = at.ticketId;");
         ResultSet result =pStmt.executeQuery();
         tagesTicket tt1;
         while(result.next()){
             tt1 = new tagesTicket();
             tt1.setTicketId(result.getInt("ticketId"));
-            tt1.setBeginn(result.getDate("beginnZeit"));
-            tt1.setEndzeit(result.getDate("endZeit"));
+            tt1.setBeginn(result.getTime("beginnZeit"));
+            tt1.setEndzeit(result.getTime("endZeit"));
             tt1.setTypeOfTicket(INTOtypeOfTicket(result.getInt("typeOfTicket")));
             tt1.setTicketName(result.getString("ticketName"));
             tt1.setDatum(result.getDate("datum"));

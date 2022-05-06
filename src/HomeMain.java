@@ -11,6 +11,7 @@ import StatusThings.*;
 import Schneekanone.*;
 import TICKETS.TypeOfTicket;
 import TICKETS.allgemeinesTicket;
+import TICKETS.tagesTicket;
 
 public class HomeMain {
 
@@ -50,7 +51,7 @@ public class HomeMain {
     // TODO: ERLEDIGT 22.04.2022 HASHMAP Verwendung
     // TODO: ERLEDIGT 22.04.2022 CSV DIRKET AM ANFANG AUFRUFEN DAMIT SIE SCHON VORHER GELADEN SIND
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         System.out.println("\n");
         System.out.println(ANSI_BLUE + "_-_-_-_-_-_-_-Willkommen-_-_-_-_-_-_-_" + ANSI_RESET);
         do {
@@ -135,6 +136,7 @@ public class HomeMain {
                                                     System.out.println("Welche Art von Ticket?");
                                                     System.out.println("Auswahlmöglichkeiten: ");
                                                     ausgabeTESTallTickets();
+                                                    tagesTicketTEST();
                                                     System.out.print(ANSI_CYAN_BACKGROUND + ANSI_BLACK);
                                                     int i = 0;
                                                     for (TypeOfTicket value : TypeOfTicket.values()) {
@@ -509,11 +511,10 @@ public class HomeMain {
             rep.open();
             System.out.println("DATEN HIER");
             for(allgemeinesTicket aT : rep.allTickets()){
+                System.out.print(ANSI_YELLOW_BACKGROUND);
                 System.out.println(aT);
+                System.out.print(ANSI_RESET);
             }
-
-
-
         } catch (ClassNotFoundException e) {
             System.out.println("KOA TREIBER LUL");
         } catch (SQLException e) {
@@ -552,6 +553,29 @@ public class HomeMain {
         }
     }
     */
+    public static void tagesTicketTEST() throws SQLException {
+        IRepTicket ir = null;
+        try {
+            ir = new RepTicket();
+            ir.open();
+            for(tagesTicket tt : ir.alltagesTicket()){
+                System.out.print(ANSI_GREEN_BACKGROUND);
+                System.out.println(tt);
+                System.out.print(ANSI_RESET);
+            }
+        } catch (ClassNotFoundException e) {
+            System.out.println("DRIVER IS NOT THERE WHERE IT SHOULD BE");
+        } catch (SQLException e) {
+            System.out.println("ERROR IN DB");
+
+        }finally {
+            try {
+                ir.close();
+            }catch (SQLException e){
+                System.out.println("DB COULD NOT BE CLOSED");
+            }
+        }
+    }
 
 
 
