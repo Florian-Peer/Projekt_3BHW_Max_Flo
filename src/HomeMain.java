@@ -484,10 +484,9 @@ public class HomeMain {
             System.out.println("ID: "+zuSpalten[0]);
             System.out.println("Vorname: "+zuSpalten[1]);
             System.out.println("Nachname: "+zuSpalten[2]);
+            System.out.println("Passwort (; "+zuSpalten[4]);
             System.out.println("Geburtsdatum: "+zuSpalten[3]);
             System.out.println("Geschlecht: "+ geschlecht +"\n\n"+"-----------------------------"+"\n");
-            System.out.println("hallo");
-            //jagga
         }
     }
 

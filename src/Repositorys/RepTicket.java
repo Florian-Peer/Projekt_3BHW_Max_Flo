@@ -14,6 +14,7 @@ import TICKETS.*;
 import java.sql.*;
 
 public class RepTicket implements IRepTicket {
+
     private String url = "jdbc:mysql://localhost/skisoftware";
     private String user = "root";
     private String password = "xz89F1";
@@ -39,6 +40,9 @@ public class RepTicket implements IRepTicket {
             // .... wird geschlossen
             this._connection.close();
             System.out.println("Verbindung wurde geschlossen!");
+        }
+        else{
+            System.out.println("Es wurde keine Verbindung erkannt!");
         }
 
     }
@@ -66,6 +70,7 @@ public class RepTicket implements IRepTicket {
     public boolean updateTicket(int ticketId, allgemeinesTicket newTicketData) throws SQLException {
         return false;
     }
+
     private TypeOfTicket INTOtypeOfTicket(int tot){
         switch (tot){
             default:
