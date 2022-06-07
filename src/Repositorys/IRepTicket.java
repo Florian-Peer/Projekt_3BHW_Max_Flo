@@ -26,4 +26,8 @@ public interface IRepTicket {
 
     List<saisonTicket> allSaisonTicket() throws SQLException;
 
+    boolean updateTagesTicketDate (tagesTicket tages) throws SQLException;
+
+
+
 }

@@ -70,10 +70,13 @@ public class RepTicket implements IRepTicket {
         switch (tot){
             default:
                 return TypeOfTicket.NichtFestgelegt;
+                /*
             case 1:
                 return TypeOfTicket.Halbtagesticket;
             case 2:
                 return TypeOfTicket.Dreistundenticket;
+
+                 */
             case 3:
                 return TypeOfTicket.Tagesticket;
             case 4:
@@ -163,4 +166,25 @@ public class RepTicket implements IRepTicket {
             return null;
         }
     }
+
+    @Override
+    public boolean updateTagesTicketDate(tagesTicket tages) throws SQLException {
+        PreparedStatement pStmt = this._connection.prepareStatement("update allgeTickets set datum = curdate() where ticketId = ?");
+        pStmt.setInt(1,tages.getTicketId());
+        return pStmt.executeUpdate() ==1;
+    }
+    /*
+    public boolean updateVehicle(Vehicles newVehicle) throws SQLException {
+        PreparedStatement pStmt = this._connection.prepareStatement("update vehicle set vehicleTyp = ?, vehicleName = ?, vehicleDescription = ?, vehicleManufactor = ?, vehiclePower = ?, vehicleCountry = ?  where vehicle_id = ?");
+        pStmt.setInt(1, newVehicle.getVehicleTyp().ordinal());
+        pStmt.setString(2, newVehicle.getVehicleName());
+        pStmt.setString(3, newVehicle.getVehicleDescription());
+        pStmt.setString(4, newVehicle.getVehicleManufactor());
+        pStmt.setDouble(5, newVehicle.getVehiclePower());
+        pStmt.setString(6, newVehicle.getVehicleCountry());
+        pStmt.setInt(7, newVehicle .getVehicleId());
+
+        return pStmt.executeUpdate() == 1;
+    }
+     */
 }

@@ -1,11 +1,6 @@
 1;Spenglerwiese;BHD;true;
-2;Kennekmaschin;test;true;
-3;AAAAAAAAAAA;er;true;
-4;nononoMachine;test;true;
-5;Hallo;Halli;false;
-6;des;isses;false;
-7;BAUERNHANG;UUU;false;
-8;TEST;test;true;
-9;Kennekmaschin;test;true;
-10;sepp;depp;false;
-11;BibaBuba;BauBau;false;
+2;ObererHang;DHD;true;
+3;UntererHang;BHD;true;
+4;Kinderparadies;GFT;true;
+5;FetzerHang;GHF;false;
+6;SeplMaierGrube;BHD;false;

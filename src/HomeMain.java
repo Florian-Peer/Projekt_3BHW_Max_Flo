@@ -67,15 +67,16 @@ public class HomeMain {
                     System.out.println(ANSI_YELLOW + "LOGIN " + ANSI_RESET);
                     //Hier wird probiert
                     if (anmelden()) {
-                        System.out.println("anmelden POSITIV\n\n\n");
+                        System.out.println("anmelden POSITIV\n\n");
                         do {
 
                             //SCHNEEKANONE DIREKT AM ANFANG AUSLESEN
                             schneekanones = FileForSKan.readSKSFromFile();
-                            System.out.println("////////////////////////////////");
+
 
                             if (mitarbeiterId()) {
-                                System.out.println("M----Mitarbeiterbereich");
+                                System.out.println("-_-_-_-_-_-_-Sie sind als Mitarbeiter eingeloggt-_-_-_-_-_-_");
+                                System.out.println("Von Hier aus können Sie mit der Eingabe [M] ins Menü gelangen");
 
                             } else {
                                 System.out.println("\n");
@@ -92,8 +93,8 @@ public class HomeMain {
 
                                         if (mitarbeiterId()) {
                                             System.out.println("\n\n\n\n");
-                                            System.out.println("_-_-_-_-_-_-Mitarbeiterbereich-_-_-_-_-_-_-_\n\n");
-                                            System.out.println("Sie können nun auf folgende Funktionen zugreifen");
+                                            System.out.println(ANSI_BLUE+"_-_-_-_-_-_-Mitarbeitermenü-_-_-_-_-_-_-_\n\n"+ANSI_RESET);
+                                            System.out.println("Folgende Aktionen sind möglich\n");
                                             System.out.println("[A] alle registrierte User betrachten");
                                             System.out.println("[S] Schneekanonen steuern");
                                             System.out.println("[H] Schneekanone hinzufügen");
@@ -136,9 +137,9 @@ public class HomeMain {
                                                     System.out.println(ANSI_PURPLE + "Kassabereich" + ANSI_RESET);
                                                     System.out.println("Welche Art von Ticket?");
                                                     System.out.println("Auswahlmöglichkeiten: ");
-                                                    ausgabeTESTallTickets();
-                                                    tagesTicketTEST();
-                                                    saisonTicketTEST();
+
+
+
                                                     System.out.print(ANSI_CYAN_BACKGROUND + ANSI_BLACK);
                                                     int i = 0;
                                                     for (TypeOfTicket value : TypeOfTicket.values()) {
@@ -151,6 +152,21 @@ public class HomeMain {
                                                     System.out.print("Ihre Wahl?: ");
                                                     choice = reader.next().charAt(0);
                                                     kassa(Integer.parseInt(String.valueOf(choice)));
+                                                    switch(choice){
+                                                        case '0':
+                                                            ausgabeTESTallTickets();
+                                                            break;
+                                                        case '1':
+                                                            tagesTicketTEST();
+                                                            break;
+                                                        case '2':
+                                                            System.out.println("2");
+                                                            saisonTicketTEST();
+                                                            break;
+                                                        case '3':
+                                                            System.out.println("3");
+                                                            break;
+                                                    }
 
                                                     break;
 
@@ -178,7 +194,8 @@ public class HomeMain {
                     break;
                 case 'r':
                     System.out.println(ANSI_PURPLE + "Registrieren" + ANSI_RESET);
-                    System.out.print("neuen Mitarbeiter(user) registrieren[u]\noder neuen Schifahrer registrieren[s] ");
+                    System.out.println("neuen Mitarbeiter(user) registrieren[u]");
+                    System.out.println("Neuer Person/Gast registrieren[g]");
                     choice = reader.next().toLowerCase().charAt(0);
                     if (choice == 'u') {
                         userRegistrieren(userDataPath);
@@ -308,9 +325,9 @@ public class HomeMain {
         do {
             System.out.println("neuen Benutzer erstellen\n");
 
-            System.out.println("Was ist der Benutzername?");
+            System.out.println("DEIN Benutzername:");
             username = reader.next();
-            System.out.println("Was ist das Passwort? (wenn neuer Mitarbeiter, hier Mitarbeiterpasswort eingeben:)");
+            System.out.println("DEIN Passwort / BEI Mitarbeiter Registrierung bitte den KEY Eingeben");
             password = reader.next();
 
             if (!password.equals(mitarbeiterPW)) {
@@ -327,6 +344,8 @@ public class HomeMain {
                     return "\n" + username + ";" + password + ";" + "0";
                 }
             }
+
+
             if (password.equals(mitarbeiterPW)) {
                 System.out.println("hallo neuer Mitarbeiter!");
                 if (userdata.containsKey(username)) {
@@ -490,7 +509,7 @@ public class HomeMain {
             System.out.println("Nachname: "+zuSpalten[2]);
             System.out.println("Geburtsdatum: "+zuSpalten[3]);
             System.out.println("Geschlecht: "+ geschlecht +"\n\n"+"-----------------------------"+"\n");
-            System.out.println("hallo");
+
             //jagga
         }
     }
@@ -514,6 +533,7 @@ public class HomeMain {
             rep.open();
             System.out.println("DATEN HIER");
             for(allgemeinesTicket aT : rep.allTickets()){
+                System.out.println(ANSI_BLACK);
                 System.out.print(ANSI_YELLOW_BACKGROUND);
                 System.out.println(aT);
                 System.out.print(ANSI_RESET);
@@ -531,37 +551,14 @@ public class HomeMain {
 
         }
     }
-    /*
-    public static void ausgabeAllWeapon(){
-        IRepositoryWeapons rep = null;
-        try {
-            rep = new RepositoryWeapons();
-            rep.open();
 
-            System.out.println("ID:    Typ:      Name:      Manufaktur:        Kraft:           Land:");
-            for (Weapons aw2 : rep.selectAllWeapon()){
-                System.out.println(aw2);
-            }
-        } catch (ClassNotFoundException e) {
-            System.out.println("MySQL-Treiber konnte nicht geladen werden!");
-
-        } catch (SQLException e) {
-            System.out.println("Datenbankfehler!");
-        } finally {
-            try {
-                rep.close();
-            } catch (SQLException e) {
-                System.out.println("DB-Verbindung konnte nicht beendet werden!");
-            }
-        }
-    }
-    */
     public static void tagesTicketTEST() throws SQLException {
         IRepTicket ir = null;
         try {
             ir = new RepTicket();
             ir.open();
             for(tagesTicket tt : ir.alltagesTicket()){
+                System.out.println(ANSI_BLACK);
                 System.out.print(ANSI_GREEN_BACKGROUND);
                 System.out.println(tt);
                 System.out.print(ANSI_RESET);
@@ -585,6 +582,7 @@ public class HomeMain {
             iR = new RepTicket();
             iR.open();
             for(saisonTicket st : iR.allSaisonTicket()){
+                System.out.println(ANSI_BLACK);
                 System.out.print(ANSI_PURPLE_BACKGROUND);
                 System.out.println(st);
                 System.out.print(ANSI_RESET);
@@ -601,6 +599,22 @@ public class HomeMain {
                 System.out.println("DB COULD NOT BE CLOSED");
             }
         }
+    }
+    public static void updateDATETagesTicket(){
+        /*
+        IRepTicket iR = null;
+        try {
+            iR = new RepTicket();
+            iR.open();
+            tagesTicket tagesTicket;
+            for(tagesTicket tt : iR.updateTagesTicketDate(tagesTicket))
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        */
+
     }
 
 
