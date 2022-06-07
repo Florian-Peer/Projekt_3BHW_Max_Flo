@@ -509,8 +509,6 @@ public class HomeMain {
             System.out.println("Nachname: "+zuSpalten[2]);
             System.out.println("Geburtsdatum: "+zuSpalten[3]);
             System.out.println("Geschlecht: "+ geschlecht +"\n\n"+"-----------------------------"+"\n");
-
-            //jagga
         }
     }
 
